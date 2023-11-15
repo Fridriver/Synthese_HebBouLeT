@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Heart
+  m_Name: Heart 1
   m_Shader: {fileID: 4800000, guid: 3ecce0ae2cd0c49be8ab8530e6041aba, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords:
