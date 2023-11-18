@@ -1,10 +1,12 @@
 using UnityEngine;
 using UnityEngine.UI;
 using Unity.Netcode;
+using Unity.Services.Lobbies;
 
 public class UIManagerLobby : MonoBehaviour
 {
-    [Header("Panneaux UI")]
+
+    [Header("Panels UI")]
     [SerializeField] private GameObject _authentification = default;
     [SerializeField] private GameObject _menuLobby = default;
     [SerializeField] private GameObject _creerLobby = default;
@@ -22,27 +24,37 @@ public class UIManagerLobby : MonoBehaviour
 
     private void Start()
     {
-        ActiverUI(3); // Affiche le panneau d'authentification au départ
+
+        // Affiche le panneau d'authentification au départ
+        ActiverUI(3); // Handle the case when there is no connection to the Unity Services
+
+
         // Appeler l'évènement SignIn de l'authentification
         AuthentificationManager.Instance.SignIn.AddListener(() => ActiverUI(0));
 
-        // Rejoint le premier Lobby Actif
-        _partieRapideButton.onClick.AddListener(() => LobbyManager.Instance.PartieRapideLobby());
+            // Rejoint le premier Lobby Actif
+            _partieRapideButton.onClick.AddListener(() => LobbyManager.Instance.PartieRapideLobby());
 
-        _creerLobbyButton.onClick.AddListener(() => ActiverUI(1));
-        _rejoindreLobbyButton.onClick.AddListener(() => ActiverUI(2));
-        _retourCreerButton.onClick.AddListener(() => ActiverUI(0));
-        _retourJoindreButton.onClick.AddListener(() => ActiverUI(0));
-        _retourSalleAttente.onClick.AddListener(() => ActiverUI(0));
+            _creerLobbyButton.onClick.AddListener(() => ActiverUI(1));
+            _rejoindreLobbyButton.onClick.AddListener(() => ActiverUI(2));
+            _retourCreerButton.onClick.AddListener(() => ActiverUI(0));
+            _retourJoindreButton.onClick.AddListener(() => ActiverUI(0));
+            _retourSalleAttente.onClick.AddListener(() => ActiverUI(0));
 
-        // Quand un joueur se connecte on appelle la méthode OnClientConnected
-        NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
-        NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnected;
+            // Quand un joueur se connecte on appelle la méthode OnClientConnected
+            NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
+            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnected;
 
-        // Si un chargement s'effectue sur le Lobby j'active le panneau de chargement
-        LobbyManager.Instance.OnStartJoindreLobby.AddListener(() => ActiverUI(5));
-        // Si une erreur de connexion se produit sur le lobby je retourne au menu initial
-        LobbyManager.Instance.OnFailedJoindreLobby.AddListener(() => ActiverUI(0));
+            // Si un chargement s'effectue sur le Lobby j'active le panneau de chargement
+            LobbyManager.Instance.OnStartJoindreLobby.AddListener(() => ActiverUI(5));
+            // Si une erreur de connexion se produit sur le lobby je retourne au menu initial
+            LobbyManager.Instance.OnFailedJoindreLobby.AddListener(() => ActiverUI(0));
+    
+           
+        
+
+        
+        
     }
 
     private void OnDestroy()
