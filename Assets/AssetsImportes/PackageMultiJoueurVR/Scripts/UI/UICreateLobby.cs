@@ -19,11 +19,25 @@ public class UICreateLobby : MonoBehaviour
     {
         // Rends le bouton actif seulement s'il y a du texte dans le input field
         _btnCreateLobby.gameObject.SetActive(_inputNomLobby.text.Trim() != "");
+        ModifierTexteNbJoueurs();
     }
 
     public void ModifierTexteNbJoueurs()
     {
         _txtNbJoueurs.text = "Joueurs : " + _sliderNbJoueurs.value.ToString();
+        if (_sliderNbJoueurs.value == _sliderNbJoueurs.maxValue)
+        {
+        _txtNbJoueurs.color = Color.red;
+        _sliderNbJoueurs.fillRect.GetComponentInChildren<Image>().color = Color.red;
+        }
+        else
+        {
+            _txtNbJoueurs.color = Color.white;
+            _sliderNbJoueurs.fillRect.GetComponentInChildren<Image>().color = Color.green;
+        }
+    
+        
+        
     }
 
     public void CreateLobbyFromUI()
@@ -35,4 +49,3 @@ public class UICreateLobby : MonoBehaviour
         LobbyManager.Instance.CreateLobby(lobbyData);
     }
 }
-
