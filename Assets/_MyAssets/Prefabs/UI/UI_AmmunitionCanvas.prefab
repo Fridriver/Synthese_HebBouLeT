@@ -126,6 +126,7 @@ GameObject:
   - component: {fileID: 5706665346417019411}
   - component: {fileID: 7791600676334234490}
   - component: {fileID: 5646222561839371531}
+  - component: {fileID: 3635487216250406806}
   m_Layer: 0
   m_Name: UI_AmmunitionCanvas
   m_TagString: Untagged
@@ -198,7 +199,7 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
+  m_PresetInfoIsWorld: 0
 --- !u!114 &7791600676334234490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -235,6 +236,19 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_RaycastTriggerInteraction: 1
+--- !u!114 &3635487216250406806
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8132831087692920724}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84cb14cb72f6f764bb89febcfb4f41aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammunitionText: {fileID: 1175002052133894630}
 --- !u!1 &9134721378453339444
 GameObject:
   m_ObjectHideFlags: 0
