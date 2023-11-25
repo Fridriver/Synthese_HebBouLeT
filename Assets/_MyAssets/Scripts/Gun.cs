@@ -6,17 +6,26 @@ using UnityEngine;
 public class Gun : MonoBehaviour
 {
     [SerializeField] private Transform _firePoint;
-    public event Action<int> EventBallonTouche;
+
+    private bool isShooting = false;
+    [SerializeField] private ParticleSystem muzzleFlash;
+    [SerializeField] private ParticleSystem hitEffect;
 
     public void Shooting()
     {
-        this.GetComponent<AudioSource>().Play();
+        isShooting = true;
+        muzzleFlash.Emit(1);
 
         RaycastHit hit;
 
-        if (Physics.Raycast(_firePoint.position, transform.TransformDirection(Vector3.forward), out hit, 10))
+        if (Physics.Raycast(_firePoint.position, _firePoint.transform.TransformDirection(Vector3.forward), out hit))
         {
-            
+            Debug.DrawRay(_firePoint.position, _firePoint.transform.TransformDirection(Vector3.forward) * hit.distance, Color.green);
+
+            hitEffect.transform.position = hit.point;
+            hitEffect.transform.forward = hit.normal;
+            hitEffect.Emit(1);
+
         }
     }
 }
