@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class UI_JeuCanvaManager : MonoBehaviour
 {
-    [Header("Canvas")]
-    [SerializeField] private GameObject UI_InGameCanvas;
+   
 
     [Header("Panels")]
     [SerializeField] private GameObject PanelMenuPrincipal;
@@ -26,7 +25,7 @@ public class UI_JeuCanvaManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        UI_InGameCanvas.SetActive(false);
+        
 
         listePanels = new GameObject[] { PanelMenuPrincipal, PanelOptions };
 
