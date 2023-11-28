@@ -1,66 +1,89 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.XR.Interaction.Toolkit;
 
 public class Gun : MonoBehaviour
 {
-    
+    private GameObject magazine;
 
-    private bool isShooting = false;
-    private bool isCharge = false;
+    private bool isCharge;
+    private bool magazineIsLoaded = true;
+    private XRSocketInteractor interactor = default;
 
     [SerializeField] private Transform raycastOrigin;
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private ParticleSystem hitEffect;
     [SerializeField] private TrailRenderer tracerEffect;
-    [SerializeField] private Collider magazine;
 
     Ray ray;
     RaycastHit hit;
 
+    private void Start()
+    {
+        
+        
+    }
+
+    private void Magazine_EventNombreDeBalles(int obj)
+    {
+        if (magazine.GetComponent<Magazine>().nbBallesChargeur == 0)
+        {
+            magazineIsLoaded = false;
+            return;
+        }
+        magazine.GetComponent<Magazine>().nbBallesChargeur -= obj; 
+    }
+
     public void Shooting()
     {
-        //if (isCharge)
-        //{
+        if (isCharge && magazineIsLoaded)
+        {
             Debug.Log("chargé !");
+
+            Magazine_EventNombreDeBalles(1);
             this.GetComponent<AudioSource>().Play();
 
-            isShooting = true;
+            
             muzzleFlash.Emit(1);
         
             ray.origin = raycastOrigin.position;
             ray.direction = raycastOrigin.forward;
-
             var tracer = Instantiate(tracerEffect, ray.origin, Quaternion.identity);
+
             tracer.AddPosition(ray.origin);
             if (Physics.Raycast(ray, out hit))
             {
+                
+
                 hitEffect.transform.position = hit.point;
                 hitEffect.transform.forward = hit.normal;
                 hitEffect.Emit(1);
 
                 tracer.transform.position = hit.point;
             }
-        //}
-        //else
-        //{
-        //    Debug.Log("Pas de chargeur !");
-        //}
+        }
+        else
+        {
+            Debug.Log("Pas de chargeur !");
+        }
     }
 
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    // Vérifiez si l'objet a le tag "Magazine"
-    //    if (other.gameObject.CompareTag("Magazine"))
-    //    {
-    //        Debug.Log("Chargé !");
-    //        isCharge = true;
-    //    }
-    //    else
-    //    {
-    //        Debug.Log("Pas de chargeur !");
-    //        isCharge = false;
-    //    }
-    //}
+    public void OnCollisionEnter(Collision collision)
+    {
+        magazine = collision.gameObject;
+        magazine.GetComponent<Magazine>().EventNombreDeBalles += Magazine_EventNombreDeBalles;
+    }
+
+    public void Loaded()
+    {
+        isCharge = true;
+    }
+
+    public void UnLoaded()
+    {
+        isCharge = false;
+    }
 }
