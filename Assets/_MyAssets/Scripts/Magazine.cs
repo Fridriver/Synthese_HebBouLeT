@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Magazine : MonoBehaviour
 {
-    [SerializeField] private int maxBallesChargeur = 9;
+    [SerializeField] public int maxBallesChargeur { get;  private set; } = 9;
     public int nbBallesChargeur;
 
     public event Action<int> EventNombreDeBalles;

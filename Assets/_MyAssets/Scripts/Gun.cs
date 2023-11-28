@@ -1,30 +1,56 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public class Gun : MonoBehaviour
 {
-    private GameObject magazine;
+   
 
+    [Header("Mag")]
+    [SerializeField] private XRBaseInteractor socketInteractor = default;
+    private Magazine magazine;
     private bool isCharge;
     private bool magazineIsLoaded = true;
-    private XRSocketInteractor interactor = default;
 
+    [Header("Gun")]
     [SerializeField] private Transform raycastOrigin;
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private ParticleSystem hitEffect;
     [SerializeField] private TrailRenderer tracerEffect;
+    private Ray ray;
+    private RaycastHit hit;
 
-    Ray ray;
-    RaycastHit hit;
+    [Header("Sounds")]
+    [SerializeField] private AudioClip shotSound;
+    [SerializeField] private AudioClip insertMagSound;
+    [SerializeField] private AudioClip emptyMagSound;
+    [SerializeField] private AudioClip removeMagSound;
+    private AudioSource audioSource;
+
+    private LiquidAmmoDisplay liquidAmmoDisplay;
 
     private void Start()
     {
+        audioSource = GetComponent<AudioSource>();
+        socketInteractor.selectEntered.AddListener(AddMagazine);
+        socketInteractor.selectExited.AddListener(RemoveMagazine);
+
+    }
+
+    public void AddMagazine(SelectEnterEventArgs interactor)
+    {
+        magazine = interactor.interactableObject.ConvertTo<Magazine>();
+        magazine.EventNombreDeBalles += Magazine_EventNombreDeBalles;
+        magazineIsLoaded = true;
+        audioSource.PlayOneShot(insertMagSound);
         
-        
+    }
+
+    public void RemoveMagazine(SelectExitEventArgs interactor)
+    {
+        magazine.EventNombreDeBalles -= Magazine_EventNombreDeBalles;
+        audioSource.PlayOneShot(removeMagSound);
+        magazine = null;
     }
 
     private void Magazine_EventNombreDeBalles(int obj)
@@ -34,21 +60,21 @@ public class Gun : MonoBehaviour
             magazineIsLoaded = false;
             return;
         }
-        magazine.GetComponent<Magazine>().nbBallesChargeur -= obj; 
+        magazine.GetComponent<Magazine>().nbBallesChargeur -= obj;
+        
     }
 
     public void Shooting()
     {
         if (isCharge && magazineIsLoaded)
         {
-            Debug.Log("chargé !");
+            //Debug.Log("chargÃ© !");
 
             Magazine_EventNombreDeBalles(1);
-            this.GetComponent<AudioSource>().Play();
+            audioSource.PlayOneShot(shotSound);
 
-            
             muzzleFlash.Emit(1);
-        
+
             ray.origin = raycastOrigin.position;
             ray.direction = raycastOrigin.forward;
             var tracer = Instantiate(tracerEffect, ray.origin, Quaternion.identity);
@@ -56,8 +82,6 @@ public class Gun : MonoBehaviour
             tracer.AddPosition(ray.origin);
             if (Physics.Raycast(ray, out hit))
             {
-                
-
                 hitEffect.transform.position = hit.point;
                 hitEffect.transform.forward = hit.normal;
                 hitEffect.Emit(1);
@@ -67,14 +91,10 @@ public class Gun : MonoBehaviour
         }
         else
         {
-            Debug.Log("Pas de chargeur !");
-        }
-    }
 
-    public void OnCollisionEnter(Collision collision)
-    {
-        magazine = collision.gameObject;
-        magazine.GetComponent<Magazine>().EventNombreDeBalles += Magazine_EventNombreDeBalles;
+            audioSource.PlayOneShot(emptyMagSound);
+            //Jouer son de clic
+        }
     }
 
     public void Loaded()

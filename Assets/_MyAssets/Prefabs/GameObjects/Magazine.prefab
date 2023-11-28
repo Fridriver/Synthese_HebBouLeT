@@ -27,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1388531219728189715}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.076, y: 1.908, z: -3.848}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -72,7 +72,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 2
+    m_Bits: 4
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
@@ -258,6 +258,8 @@ GameObject:
   - component: {fileID: 1388531220181692523}
   - component: {fileID: 1388531220181692525}
   - component: {fileID: 1388531220181692522}
+  - component: {fileID: 6872787442712962318}
+  - component: {fileID: 1570858330712690571}
   m_Layer: 0
   m_Name: Liquid
   m_TagString: Untagged
@@ -330,6 +332,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &6872787442712962318
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388531220181692520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d1ff6df00de1fa8469053f9680b28075, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MaxWobble: 0.1
+  WobbleSpeed: 0.8
+  Recovery: 0.1
+--- !u!114 &1570858330712690571
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1388531220181692520}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d5ab4fea93fea6409f994d82aa85f30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Container: {fileID: 0}
+  MinLiquidAmount: -0.52
+  MaxLiquidAmount: -0.46
 --- !u!1 &1388531220542246192
 GameObject:
   m_ObjectHideFlags: 0

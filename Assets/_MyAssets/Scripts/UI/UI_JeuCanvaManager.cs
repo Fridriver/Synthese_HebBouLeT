@@ -19,7 +19,6 @@ public class UI_JeuCanvaManager : MonoBehaviour
     [SerializeField] private Button btnRetourOptions;
 
     private GameObject[] listePanels;
-    private bool MenuActif = false;
     
    
     // Start is called before the first frame update

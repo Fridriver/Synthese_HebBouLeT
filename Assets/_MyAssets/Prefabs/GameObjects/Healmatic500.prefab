@@ -342,9 +342,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1701521124782751625}
   - component: {fileID: 1701521124789669985}
+  - component: {fileID: 1701521124782751626}
   - component: {fileID: 9026479500684335759}
   - component: {fileID: 1701521124782751624}
-  - component: {fileID: 1701521124782751626}
   - component: {fileID: 1701521124782751620}
   m_Layer: 0
   m_Name: Healmatic500
@@ -396,6 +396,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &1701521124782751626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1701521124782252969}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0177e7d60123829499491b46e29f4bc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  socketInteractor: {fileID: 9026479501480734604}
+  raycastOrigin: {fileID: 9026479500913329865}
+  muzzleFlash: {fileID: 9188533317726389601}
+  hitEffect: {fileID: 6523435821488009915}
+  tracerEffect: {fileID: 2531099186951022280, guid: 95456c56d3b46894db495b23743bb350,
+    type: 3}
+  shotSound: {fileID: 8300000, guid: fbc2b14268d715446890c0fcedb6bd18, type: 3}
+  reloadSound: {fileID: 8300000, guid: 4fa47482629cb5e4ea45c714aee0165f, type: 3}
 --- !u!54 &9026479500684335759
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -430,7 +450,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 4294967295
+    m_Bits: 1
   m_DistanceCalculationMode: 1
   m_SelectMode: 0
   m_CustomReticle: {fileID: 0}
@@ -559,23 +579,6 @@ MonoBehaviour:
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
---- !u!114 &1701521124782751626
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1701521124782252969}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0177e7d60123829499491b46e29f4bc2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  raycastOrigin: {fileID: 9026479500913329865}
-  muzzleFlash: {fileID: 9188533317726389601}
-  hitEffect: {fileID: 6523435821488009915}
-  tracerEffect: {fileID: 2531099186951022280, guid: 95456c56d3b46894db495b23743bb350,
-    type: 3}
 --- !u!82 &1701521124782751620
 AudioSource:
   m_ObjectHideFlags: 0
@@ -586,7 +589,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a74a7ed991e60154a9667b5faa41b91e, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -30050,7 +30053,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4294967295
   m_InteractionLayers:
-    m_Bits: 2
+    m_Bits: 4
   m_AttachTransform: {fileID: 9026479500400267776}
   m_KeepSelectedTargetValid: 1
   m_DisableVisualsWhenBlockedInGroup: 1
