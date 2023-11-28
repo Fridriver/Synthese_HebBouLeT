@@ -1,46 +1,38 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class UI_JeuCanvaManager : MonoBehaviour
 {
-   
-
     [Header("Panels")]
     [SerializeField] private GameObject PanelMenuPrincipal;
+
     [SerializeField] private GameObject PanelOptions;
 
     [Header("Boutons pour ouvrir Panel")]
     [SerializeField] private Button btnOptions;
+
     [SerializeField] private Button btnQuitter;
 
     [Header("Boutons de retour")]
     [SerializeField] private Button btnRetourOptions;
 
     private GameObject[] listePanels;
-    
-   
-    // Start is called before the first frame update
-    void Start()
-    {
-        
 
+    // Start is called before the first frame update
+    private void Start()
+    {
         listePanels = new GameObject[] { PanelMenuPrincipal, PanelOptions };
 
         ActivateRightPanel(0);
 
-
         btnOptions.onClick.AddListener(() => ActivateRightPanel(1));
         btnRetourOptions.onClick.AddListener(() => ActivateRightPanel(0));
-        btnQuitter.onClick.AddListener(()=>Quit());
-
+        btnQuitter.onClick.AddListener(() => Quit());
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-
     }
 
     private void ActivateRightPanel(int index)
@@ -51,7 +43,6 @@ public class UI_JeuCanvaManager : MonoBehaviour
                 listePanels[i].SetActive(i == index);
             }
         }
-
     }
 
     private void Quit()

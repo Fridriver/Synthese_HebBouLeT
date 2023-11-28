@@ -1,14 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
     [Header("Panneaux UI")]
     [SerializeField] private GameObject menuPrincipal = default;
+
     [SerializeField] private GameObject menuMultijoueur;
     [SerializeField] private GameObject menuAuthentification;
     [SerializeField] private GameObject menuOptions;
@@ -16,24 +14,24 @@ public class CanvasManager : MonoBehaviour
 
     [Header("Boutons Menu Principal")]
     [SerializeField] private Button jouerButton;
+
     [SerializeField] private Button multijoueurButton;
     [SerializeField] private Button optionsButton;
     [SerializeField] private Button instructionsButton;
     [SerializeField] private Button quitterButton;
-    
 
     [Header("Boutons de retour")]
     [SerializeField] private Button retourMultijoueurMenu;
+
     [SerializeField] private Button retourOptionsMenu;
     [SerializeField] private Button retourInstructionsMenu;
 
-  
     //LIST_SCENES[1] = "Niveau"
 
     private GameObject[] listPanels;
-         
+
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         listPanels = new GameObject[] { menuPrincipal, menuAuthentification, menuMultijoueur, menuOptions, menuInstructions };
 
@@ -53,9 +51,8 @@ public class CanvasManager : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
     }
 
     public void Play()
@@ -65,17 +62,15 @@ public class CanvasManager : MonoBehaviour
 
     private void ActivateRightPanel(int index)
     {
-       for (int i = 0; i < listPanels.Length; i++)
+        for (int i = 0; i < listPanels.Length; i++)
         {
             listPanels[i].SetActive(i == index);
         }
-
     }
 
     private void IsConnectedToUnityServices()
     {
-        
-        if(NetworkManager.Singleton.IsConnectedClient)
+        if (NetworkManager.Singleton.IsConnectedClient)
         {
             ActivateRightPanel(2);
         }
@@ -87,7 +82,7 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-   public void Quit()
+    public void Quit()
     {
         Application.Quit();
     }

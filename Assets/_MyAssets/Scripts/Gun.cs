@@ -4,16 +4,16 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Gun : MonoBehaviour
 {
-   
-
     [Header("Mag")]
     [SerializeField] private XRBaseInteractor socketInteractor = default;
+
     private Magazine magazine;
     private bool isCharge;
     private bool magazineIsLoaded = true;
 
     [Header("Gun")]
     [SerializeField] private Transform raycastOrigin;
+
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private ParticleSystem hitEffect;
     [SerializeField] private TrailRenderer tracerEffect;
@@ -22,6 +22,7 @@ public class Gun : MonoBehaviour
 
     [Header("Sounds")]
     [SerializeField] private AudioClip shotSound;
+
     [SerializeField] private AudioClip insertMagSound;
     [SerializeField] private AudioClip emptyMagSound;
     [SerializeField] private AudioClip removeMagSound;
@@ -34,7 +35,6 @@ public class Gun : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         socketInteractor.selectEntered.AddListener(AddMagazine);
         socketInteractor.selectExited.AddListener(RemoveMagazine);
-
     }
 
     public void AddMagazine(SelectEnterEventArgs interactor)
@@ -43,7 +43,6 @@ public class Gun : MonoBehaviour
         magazine.EventNombreDeBalles += Magazine_EventNombreDeBalles;
         magazineIsLoaded = true;
         audioSource.PlayOneShot(insertMagSound);
-        
     }
 
     public void RemoveMagazine(SelectExitEventArgs interactor)
@@ -61,7 +60,6 @@ public class Gun : MonoBehaviour
             return;
         }
         magazine.GetComponent<Magazine>().nbBallesChargeur -= obj;
-        
     }
 
     public void Shooting()
@@ -91,7 +89,6 @@ public class Gun : MonoBehaviour
         }
         else
         {
-
             audioSource.PlayOneShot(emptyMagSound);
             //Jouer son de clic
         }
