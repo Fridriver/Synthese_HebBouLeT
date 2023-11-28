@@ -21876,26 +21876,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 1701521124782751626, guid: 401190566e1ab374e8d30d5102a9a55d,
-        type: 3}
-      propertyPath: emptySound
-      value: 
-      objectReference: {fileID: 8300000, guid: 5a58ba85e6180de4dbaa7dbda3efaa2d, type: 3}
-    - target: {fileID: 1701521124782751626, guid: 401190566e1ab374e8d30d5102a9a55d,
-        type: 3}
-      propertyPath: emptyMagSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 5a58ba85e6180de4dbaa7dbda3efaa2d, type: 3}
-    - target: {fileID: 1701521124782751626, guid: 401190566e1ab374e8d30d5102a9a55d,
-        type: 3}
-      propertyPath: insertMagSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 2b83a124eecd528439db0077b21f2eb3, type: 3}
-    - target: {fileID: 1701521124782751626, guid: 401190566e1ab374e8d30d5102a9a55d,
-        type: 3}
-      propertyPath: removeMagSound
-      value: 
-      objectReference: {fileID: 8300000, guid: 884ec9dd57df3a449b971d2d0591ef72, type: 3}
     - target: {fileID: 9026479501480734604, guid: 401190566e1ab374e8d30d5102a9a55d,
         type: 3}
       propertyPath: m_InteractionManager

@@ -415,7 +415,9 @@ MonoBehaviour:
   tracerEffect: {fileID: 2531099186951022280, guid: 95456c56d3b46894db495b23743bb350,
     type: 3}
   shotSound: {fileID: 8300000, guid: fbc2b14268d715446890c0fcedb6bd18, type: 3}
-  reloadSound: {fileID: 8300000, guid: 4fa47482629cb5e4ea45c714aee0165f, type: 3}
+  insertMagSound: {fileID: 8300000, guid: 2b83a124eecd528439db0077b21f2eb3, type: 3}
+  emptyMagSound: {fileID: 8300000, guid: 5a58ba85e6180de4dbaa7dbda3efaa2d, type: 3}
+  removeMagSound: {fileID: 8300000, guid: 884ec9dd57df3a449b971d2d0591ef72, type: 3}
 --- !u!54 &9026479500684335759
 Rigidbody:
   m_ObjectHideFlags: 0
