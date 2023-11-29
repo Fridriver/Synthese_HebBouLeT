@@ -1,10 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class SceneLoaderManager : MonoBehaviour
-{   
-    public static readonly string[] LIST_SCENES = new string[] {"StartScene", "Niveau", "EndScene"};
+{
+    //public static readonly string[] LIST_SCENES = new string[] { "StartScene", "Niveau", "EndScene" };
+    //public SceneAsset[] scenes { get; private set; }
 
     private static SceneLoaderManager _instance;
     
@@ -21,11 +25,9 @@ public class SceneLoaderManager : MonoBehaviour
     }
 
 
-
-
     public void LoadScene(string sceneName)
     {
-        UnityEngine.SceneManagement.SceneManager.LoadScene(sceneName);
+        SceneManager.LoadScene(sceneName);
     }
 
 }

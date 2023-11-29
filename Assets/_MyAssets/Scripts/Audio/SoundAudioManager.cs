@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class OptionsPanelManager : MonoBehaviour
+public class SoundAudioManager : MonoBehaviour
 {
     [SerializeField] private Slider volumeSlider;
     [SerializeField] private Toggle muteToggle;

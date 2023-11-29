@@ -5,13 +5,9 @@ using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-
-    [Header("Menu principal")]
-    [SerializeField] private GameObject menuPrincipal = default;
     [Header("Panneaux UI")]
     [SerializeField] private GameObject menuJeu = default;
     [SerializeField] private GameObject menuMultijoueur;
-    [SerializeField] private GameObject menuAuthentification;
     [SerializeField] private GameObject menuOptions;
     [SerializeField] private GameObject menuInstructions;
 
@@ -29,11 +25,6 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private Button retourOptionsMenu;
     [SerializeField] private Button retourInstructionsMenu;
 
-    [Header("Menu lobby")]
-    [SerializeField] private GameObject Lobby = default;
-
-
-
     //LIST_SCENES[1] = "Niveau"
 
     private GameObject[] listPanels;
@@ -41,14 +32,14 @@ public class CanvasManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        listPanels = new GameObject[] { menuJeu, menuAuthentification, menuMultijoueur, menuOptions, menuInstructions };
+        listPanels = new GameObject[] { menuJeu, menuMultijoueur, menuOptions, menuInstructions };
 
         ActivateRightPanel(0);
 
-        multijoueurButton.onClick.AddListener(() => IsConnectedToUnityServices());
+        multijoueurButton.onClick.AddListener(() => GoToMultiplayerScene());
 
-        optionsButton.onClick.AddListener(() => ActivateRightPanel(3));
-        instructionsButton.onClick.AddListener(() => ActivateRightPanel(4));
+        optionsButton.onClick.AddListener(() => ActivateRightPanel(2));
+        instructionsButton.onClick.AddListener(() => ActivateRightPanel(3));
 
         retourInstructionsMenu.onClick.AddListener(() => ActivateRightPanel(0));
         retourOptionsMenu.onClick.AddListener(() => ActivateRightPanel(0));
@@ -65,7 +56,7 @@ public class CanvasManager : MonoBehaviour
 
     public void Play()
     {
-        SceneLoaderManager.Instance.LoadScene(SceneLoaderManager.LIST_SCENES[1]);
+        SceneLoaderManager.Instance.LoadScene("Niveau");
     }
 
     private void ActivateRightPanel(int index)
@@ -76,16 +67,18 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
-    private void IsConnectedToUnityServices()
+    private void GoToMultiplayerScene()
     {
 
-        Lobby.SetActive(true);
-        menuPrincipal.SetActive(false);
+        SceneLoaderManager.Instance.LoadScene("StartSceneMultijoueur");
 
     }
 
     public void Quit()
     {
         Application.Quit();
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }

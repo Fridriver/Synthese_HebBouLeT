@@ -14,6 +14,7 @@ public class AuthentificationManager : MonoBehaviour
     public static AuthentificationManager Instance;  // Création Singleton
     
     public UnityEvent SignIn;  // Petmet l'appel du Event de l'extérieur
+    public UnityEvent SignOut;
     
     private void Awake()
     {
@@ -52,5 +53,12 @@ public class AuthentificationManager : MonoBehaviour
 
         //VivoxService.Instance.Initialize();
         //VivoxVoiceManager.Instance.Login();
+    }
+    public  void Logout()
+    {
+        //await VivoxVoiceManager.Instance.LogoutAsync();
+        //await VivoxService.Instance.ShutdownAsync();
+        AuthenticationService.Instance.SignOut();
+        SignOut?.Invoke();
     }
 }

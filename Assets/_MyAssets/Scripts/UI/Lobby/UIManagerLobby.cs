@@ -1,13 +1,12 @@
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
-using Unity.Netcode;
-using Unity.Services.Lobbies;
 
 public class UIManagerLobby : MonoBehaviour
 {
-
     [Header("Panels UI")]
     [SerializeField] private GameObject _authentification = default;
+
     [SerializeField] private GameObject _menuLobby = default;
     [SerializeField] private GameObject _creerLobby = default;
     [SerializeField] private GameObject _rejoindreLobby = default;
@@ -16,45 +15,45 @@ public class UIManagerLobby : MonoBehaviour
 
     [Header("Boutons")]
     [SerializeField] private Button _partieRapideButton = default;
+
     [SerializeField] private Button _creerLobbyButton = default;
     [SerializeField] private Button _rejoindreLobbyButton = default;
+
+    [Header("Boutons de Retour")]
+    [SerializeField] private Button _quitterLobbyButton = default;
+
     [SerializeField] private Button _retourJoindreButton = default;
     [SerializeField] private Button _retourCreerButton = default;
     [SerializeField] private Button _retourSalleAttente = default;
 
     private void Start()
     {
-       
         // Affiche le panneau d'authentification au départ
         ActiverUI(3);
-             Debug.Log("Connexion réussie"  +NetworkManager.Singleton.IsApproved);
 
         // Appeler l'évènement SignIn de l'authentification
-            AuthentificationManager.Instance.SignIn.AddListener(() => ActiverUI(0));
+        AuthentificationManager.Instance.SignIn.AddListener(() => ActiverUI(0));
 
-            // Rejoint le premier Lobby Actif
-            _partieRapideButton.onClick.AddListener(() => LobbyManager.Instance.PartieRapideLobby());
+        // Rejoint le premier Lobby Actif
+        _partieRapideButton.onClick.AddListener(() => LobbyManager.Instance.PartieRapideLobby());
 
-            _creerLobbyButton.onClick.AddListener(() => ActiverUI(1));
-            _rejoindreLobbyButton.onClick.AddListener(() => ActiverUI(2));
-            _retourCreerButton.onClick.AddListener(() => ActiverUI(0));
-            _retourJoindreButton.onClick.AddListener(() => ActiverUI(0));
-            _retourSalleAttente.onClick.AddListener(() => ActiverUI(0));
+        _creerLobbyButton.onClick.AddListener(() => ActiverUI(1));
+        _rejoindreLobbyButton.onClick.AddListener(() => ActiverUI(2));
 
-            // Quand un joueur se connecte on appelle la méthode OnClientConnected
-            NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
-            NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnected;
+        _retourCreerButton.onClick.AddListener(() => ActiverUI(0));
+        _retourJoindreButton.onClick.AddListener(() => ActiverUI(0));
+        _retourSalleAttente.onClick.AddListener(() => ActiverUI(0));
 
-            // Si un chargement s'effectue sur le Lobby j'active le panneau de chargement
-            LobbyManager.Instance.OnStartJoindreLobby.AddListener(() => ActiverUI(5));
-            // Si une erreur de connexion se produit sur le lobby je retourne au menu initial
-            LobbyManager.Instance.OnFailedJoindreLobby.AddListener(() => ActiverUI(0));
-    
-           
-        
+        _quitterLobbyButton.onClick.AddListener(() => RetourMenuPrincipal());
 
-        
-        
+        // Quand un joueur se connecte on appelle la méthode OnClientConnected
+        NetworkManager.Singleton.OnClientConnectedCallback += OnClientConnected;
+        NetworkManager.Singleton.OnClientDisconnectCallback += OnClientDisconnected;
+
+        // Si un chargement s'effectue sur le Lobby j'active le panneau de chargement
+        LobbyManager.Instance.OnStartJoindreLobby.AddListener(() => ActiverUI(5));
+        // Si une erreur de connexion se produit sur le lobby je retourne au menu initial
+        LobbyManager.Instance.OnFailedJoindreLobby.AddListener(() => ActiverUI(0));
     }
 
     private void OnDestroy()
@@ -98,9 +97,11 @@ public class UIManagerLobby : MonoBehaviour
             uiElements[i].SetActive(i == index);
         }
     }
+
+    private void RetourMenuPrincipal()
+    {
+        LobbyManager.Instance.LeaveLobbyAsync();
+        SceneLoaderManager.Instance.LoadScene("StartScene");
+        AuthentificationManager.Instance.Logout();
+    }
 }
-
-
-
-
-

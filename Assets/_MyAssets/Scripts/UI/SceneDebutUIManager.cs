@@ -27,7 +27,7 @@ public class SceneDebutUIManager : MonoBehaviour
 
     public void Play()
     {
-        SceneLoaderManager.Instance.LoadScene(SceneLoaderManager.LIST_SCENES[1]);
+        SceneLoaderManager.Instance.LoadScene("Niveau");
     }
 
     public void Multiplayer()
