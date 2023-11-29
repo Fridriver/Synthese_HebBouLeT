@@ -8,7 +8,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private XRBaseInteractor socketInteractor = default;
 
     private Magazine magazine;
-    private bool isCharge;
+    private bool magazineIsInsert;
     private bool magazineIsLoaded = true;
 
     [Header("Gun")]
@@ -41,7 +41,15 @@ public class Gun : MonoBehaviour
     {
         magazine = interactor.interactableObject.ConvertTo<Magazine>();
         magazine.EventNombreDeBalles += Magazine_EventNombreDeBalles;
-        magazineIsLoaded = true;
+        if (magazine.nbBallesChargeur == 0)
+        {
+            magazineIsLoaded = false;
+        }
+        else
+        {
+            magazineIsLoaded = true;
+        }
+        
         audioSource.PlayOneShot(insertMagSound);
     }
 
@@ -54,7 +62,7 @@ public class Gun : MonoBehaviour
 
     private void Magazine_EventNombreDeBalles(int obj)
     {
-        if (magazine.GetComponent<Magazine>().nbBallesChargeur == 0)
+        if (magazine.nbBallesChargeur == 0)
         {
             magazineIsLoaded = false;
             return;
@@ -64,10 +72,8 @@ public class Gun : MonoBehaviour
 
     public void Shooting()
     {
-        if (isCharge && magazineIsLoaded)
+        if (magazineIsInsert && magazineIsLoaded)
         {
-            //Debug.Log("chargé !");
-
             Magazine_EventNombreDeBalles(1);
             audioSource.PlayOneShot(shotSound);
 
@@ -96,11 +102,11 @@ public class Gun : MonoBehaviour
 
     public void Loaded()
     {
-        isCharge = true;
+        magazineIsInsert = true;
     }
 
     public void UnLoaded()
     {
-        isCharge = false;
+        magazineIsInsert = false;
     }
 }
