@@ -1,12 +1,15 @@
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class CanvasManager : MonoBehaviour
 {
-    [Header("Panneaux UI")]
-    [SerializeField] private GameObject menuPrincipal = default;
 
+    [Header("Menu principal")]
+    [SerializeField] private GameObject menuPrincipal = default;
+    [Header("Panneaux UI")]
+    [SerializeField] private GameObject menuJeu = default;
     [SerializeField] private GameObject menuMultijoueur;
     [SerializeField] private GameObject menuAuthentification;
     [SerializeField] private GameObject menuOptions;
@@ -26,6 +29,11 @@ public class CanvasManager : MonoBehaviour
     [SerializeField] private Button retourOptionsMenu;
     [SerializeField] private Button retourInstructionsMenu;
 
+    [Header("Menu lobby")]
+    [SerializeField] private GameObject Lobby = default;
+
+
+
     //LIST_SCENES[1] = "Niveau"
 
     private GameObject[] listPanels;
@@ -33,7 +41,7 @@ public class CanvasManager : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        listPanels = new GameObject[] { menuPrincipal, menuAuthentification, menuMultijoueur, menuOptions, menuInstructions };
+        listPanels = new GameObject[] { menuJeu, menuAuthentification, menuMultijoueur, menuOptions, menuInstructions };
 
         ActivateRightPanel(0);
 
@@ -70,16 +78,10 @@ public class CanvasManager : MonoBehaviour
 
     private void IsConnectedToUnityServices()
     {
-        if (NetworkManager.Singleton.IsConnectedClient)
-        {
-            ActivateRightPanel(2);
-        }
-        else
-        {
-            // Affiche le panneau d'authentification au départ
-            ActivateRightPanel(1);
-            // Handle the case when there is no connection to the Unity Services
-        }
+
+        Lobby.SetActive(true);
+        menuPrincipal.SetActive(false);
+
     }
 
     public void Quit()

@@ -24,13 +24,13 @@ public class UIManagerLobby : MonoBehaviour
 
     private void Start()
     {
-
+       
         // Affiche le panneau d'authentification au départ
-        ActiverUI(3); // Handle the case when there is no connection to the Unity Services
-
+        ActiverUI(3);
+             Debug.Log("Connexion réussie"  +NetworkManager.Singleton.IsApproved);
 
         // Appeler l'évènement SignIn de l'authentification
-        AuthentificationManager.Instance.SignIn.AddListener(() => ActiverUI(0));
+            AuthentificationManager.Instance.SignIn.AddListener(() => ActiverUI(0));
 
             // Rejoint le premier Lobby Actif
             _partieRapideButton.onClick.AddListener(() => LobbyManager.Instance.PartieRapideLobby());
