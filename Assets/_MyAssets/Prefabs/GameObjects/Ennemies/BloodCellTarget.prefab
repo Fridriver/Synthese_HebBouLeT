@@ -144,7 +144,7 @@ GameObject:
   - component: {fileID: 3486066420832185953}
   m_Layer: 10
   m_Name: BloodCellTarget
-  m_TagString: Untagged
+  m_TagString: Ennemi
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
