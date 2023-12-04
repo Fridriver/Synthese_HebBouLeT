@@ -1310,12 +1310,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 6541161640663809560}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc9f084d8538a6146b34e8873c120ed3, type: 3}
+  m_Script: {fileID: 11500000, guid: cd2066c1fb2e7774fb1cf7d005326b45, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _rootAvatar: {fileID: 6541161640663809562}
   _headAvatar: {fileID: 6541161642109387648}
-  _leftHandAvatar: {fileID: 6541161642444865870}
+  _leftHandAvatar: {fileID: 6575842132558724303}
   _rightHandAvatar: {fileID: 6541161641356295085}
 --- !u!114 &7795657251161631792
 MonoBehaviour:
@@ -1370,7 +1370,7 @@ MonoBehaviour:
   _gradientCouleurPeau:
     serializedVersion: 2
     key0: {r: 1, g: 1, b: 1, a: 1}
-    key1: {r: 1, g: 1, b: 1, a: 1}
+    key1: {r: 0.9530238, g: 1, b: 0.495283, a: 1}
     key2: {r: 0, g: 0, b: 0, a: 0}
     key3: {r: 0, g: 0, b: 0, a: 0}
     key4: {r: 0, g: 0, b: 0, a: 0}
