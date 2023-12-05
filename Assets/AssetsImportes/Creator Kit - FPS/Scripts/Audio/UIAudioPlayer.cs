@@ -6,8 +6,9 @@ public class UIAudioPlayer : MonoBehaviour
 {
     public static UIAudioPlayer Instance { get; private set; }
 
-    public AudioClip PositiveSound;
-    public AudioClip NegativeSound;
+    [SerializeField] private AudioClip PositiveSound;
+    [SerializeField] private AudioClip NegativeSound;
+    [SerializeField] private AudioClip SelectSound;
     
     AudioSource m_Source;
 
@@ -16,7 +17,10 @@ public class UIAudioPlayer : MonoBehaviour
         m_Source = GetComponent<AudioSource>();
         Instance = this;
     }
-
+    public static void Play(bool positive)
+    {
+        Instance.m_Source.PlayOneShot(positive ? Instance.PositiveSound : Instance.NegativeSound);
+    }
     public static void PlayPositive()
     {
         Instance.m_Source.PlayOneShot(Instance.PositiveSound);
@@ -25,5 +29,10 @@ public class UIAudioPlayer : MonoBehaviour
     public static void PlayNegative()
     {
         Instance.m_Source.PlayOneShot(Instance.NegativeSound);
+    }
+
+    public static void PlaySelect()
+    {
+         Instance.m_Source.PlayOneShot(Instance.SelectSound);
     }
 }

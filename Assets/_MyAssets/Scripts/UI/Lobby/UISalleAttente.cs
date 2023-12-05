@@ -66,6 +66,7 @@ public class UISalleAttente : MonoBehaviour
     public void SetReady(bool isReady)
     {
         Lobby currentLobby = LobbyManager.Instance.CurrentLobby;
+        UIAudioPlayer.Play(isReady);
 
         // Vérifier s'il existe un Lobby courant
         if(currentLobby != null)

@@ -33,16 +33,16 @@ public class UIManagerLobby : MonoBehaviour
 
         // Appeler l'évènement SignIn de l'authentification
         AuthentificationManager.Instance.SignIn.AddListener(() => ActiverUI(0));
-        
+
         // Rejoint le premier Lobby Actif
         _partieRapideButton.onClick.AddListener(() => LobbyManager.Instance.PartieRapideLobby());
 
-        _creerLobbyButton.onClick.AddListener(() => ActiverUI(1));
-        _rejoindreLobbyButton.onClick.AddListener(() => ActiverUI(2));
+        _creerLobbyButton.onClick.AddListener(() => ActiverUI(1, true));
+        _rejoindreLobbyButton.onClick.AddListener(() => ActiverUI(2, true));
 
-        _retourCreerButton.onClick.AddListener(() => ActiverUI(0));
-        _retourJoindreButton.onClick.AddListener(() => ActiverUI(0));
-        _retourSalleAttente.onClick.AddListener(() => ActiverUI(0));
+        _retourCreerButton.onClick.AddListener(() => ActiverUI(0, false));
+        _retourJoindreButton.onClick.AddListener(() => ActiverUI(0, false));
+        _retourSalleAttente.onClick.AddListener(() => ActiverUI(0, false));
 
         _quitterLobbyButton.onClick.AddListener(() => RetourMenuPrincipal());
 
@@ -73,7 +73,7 @@ public class UIManagerLobby : MonoBehaviour
 
     public void QuitterLobbyUI()
     {
-        ActiverUI(0);
+        ActiverUI(0, false);
         LobbyManager.Instance.LeaveLobbyAsync();
     }
 
@@ -98,11 +98,21 @@ public class UIManagerLobby : MonoBehaviour
         }
     }
 
+    public void ActiverUI(int index, bool positive)
+    {
+        GameObject[] uiElements = new GameObject[] { _menuLobby, _creerLobby, _rejoindreLobby, _authentification, _salleAttente, _chargement };
+        for (int i = 0; i < uiElements.Length; i++)
+        {
+            uiElements[i].SetActive(i == index);
+            UIAudioPlayer.Play(positive);
+        }
+    }
+
     private void RetourMenuPrincipal()
     {
+        UIAudioPlayer.PlayNegative();
         LobbyManager.Instance.LeaveLobbyAsync();
         AuthentificationManager.Instance.Logout();
         SceneLoaderManager.Instance.LoadScene("StartScene");
-       
     }
 }

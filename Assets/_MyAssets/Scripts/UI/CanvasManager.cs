@@ -1,5 +1,3 @@
-using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +5,7 @@ public class CanvasManager : MonoBehaviour
 {
     [Header("Panneaux UI")]
     [SerializeField] private GameObject menuJeu = default;
+
     [SerializeField] private GameObject menuMultijoueur;
     [SerializeField] private GameObject menuOptions;
     [SerializeField] private GameObject menuInstructions;
@@ -38,12 +37,12 @@ public class CanvasManager : MonoBehaviour
 
         multijoueurButton.onClick.AddListener(() => GoToMultiplayerScene());
 
-        optionsButton.onClick.AddListener(() => ActivateRightPanel(2));
-        instructionsButton.onClick.AddListener(() => ActivateRightPanel(3));
+        optionsButton.onClick.AddListener(() => ActivateRightPanel(2, true));
+        instructionsButton.onClick.AddListener(() => ActivateRightPanel(3, true));
 
-        retourInstructionsMenu.onClick.AddListener(() => ActivateRightPanel(0));
-        retourOptionsMenu.onClick.AddListener(() => ActivateRightPanel(0));
-        retourMultijoueurMenu.onClick.AddListener(() => ActivateRightPanel(0));
+        retourInstructionsMenu.onClick.AddListener(() => ActivateRightPanel(0, false));
+        retourOptionsMenu.onClick.AddListener(() => ActivateRightPanel(0, false));
+        retourMultijoueurMenu.onClick.AddListener(() => ActivateRightPanel(0, false));
 
         jouerButton.onClick.AddListener(() => Play());
         quitterButton.onClick.AddListener(() => Quit());
@@ -56,6 +55,7 @@ public class CanvasManager : MonoBehaviour
 
     public void Play()
     {
+        UIAudioPlayer.PlayPositive();
         SceneLoaderManager.Instance.LoadScene("Niveau");
     }
 
@@ -67,15 +67,23 @@ public class CanvasManager : MonoBehaviour
         }
     }
 
+    private void ActivateRightPanel(int index, bool positive)
+    {
+        for (int i = 0; i < listPanels.Length; i++)
+        {
+            listPanels[i].SetActive(i == index);
+            UIAudioPlayer.Play(positive);
+        }
+    }
+
     private void GoToMultiplayerScene()
     {
-
         SceneLoaderManager.Instance.LoadScene("StartSceneMultijoueur");
-
     }
 
     public void Quit()
     {
+        UIAudioPlayer.PlayNegative();
         Application.Quit();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
