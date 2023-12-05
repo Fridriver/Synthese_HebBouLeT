@@ -245,10 +245,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PanelMenuPrincipal: {fileID: 2670579614766695540}
-  PanelOptions: {fileID: 0}
+  PanelOptions: {fileID: 4706267971111634790}
   btnOptions: {fileID: 145736825482780482}
   btnQuitter: {fileID: 2921247148096704773}
-  btnRetourOptions: {fileID: 0}
+  btnRetourOptions: {fileID: 7416126430139027762}
 --- !u!1001 &2075647993827823916
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -711,6 +711,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: OptionsPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 7441747284514465009, guid: dae521535f503454d8c3ed0aeea03400,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7721069111572695685, guid: dae521535f503454d8c3ed0aeea03400,
         type: 3}
       propertyPath: m_AnchorMax.x
@@ -733,6 +738,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dae521535f503454d8c3ed0aeea03400, type: 3}
+--- !u!1 &4706267971111634790 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7441747284514465009, guid: dae521535f503454d8c3ed0aeea03400,
+    type: 3}
+  m_PrefabInstance: {fileID: 2744487068932383639}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7416126430139027762 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4682969285286212261, guid: dae521535f503454d8c3ed0aeea03400,
+    type: 3}
+  m_PrefabInstance: {fileID: 2744487068932383639}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &8971890052753998692 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6527103465277972723, guid: dae521535f503454d8c3ed0aeea03400,
