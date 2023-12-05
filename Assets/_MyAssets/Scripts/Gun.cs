@@ -1,3 +1,4 @@
+using System;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -16,8 +17,9 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private ParticleSystem hitEffect;
-    [SerializeField] private ParticleSystem hitMonstreEffect;
+    [SerializeField] private ParticleSystem hitMonstreEffect; /**/
     [SerializeField] private TrailRenderer tracerEffect;
+    
     public int nbMort;
     private Ray ray;
     private RaycastHit hit;
@@ -31,6 +33,8 @@ public class Gun : MonoBehaviour
     private AudioSource audioSource;
 
     private LiquidAmmoDisplay liquidAmmoDisplay;
+
+    public event Action<GameObject> OnEnemyHit;
 
     private void Start()
     {
@@ -51,7 +55,7 @@ public class Gun : MonoBehaviour
         {
             magazineIsLoaded = true;
         }
-        
+
         audioSource.PlayOneShot(insertMagSound);
     }
 
@@ -88,20 +92,19 @@ public class Gun : MonoBehaviour
             tracer.AddPosition(ray.origin);
             if (Physics.Raycast(ray, out hit))
             {
-                
+
 
                 tracer.transform.position = hit.point;
 
                 if (hit.collider.tag == "Ennemi")
                 {
-                    //Destroy(gameObject); Ça c'est vraiment drôle xD
-                    nbMort ++;
-                    hitMonstreEffect.transform.position = hit.point;
-                    hitMonstreEffect.transform.forward = hit.normal;
-                    hitMonstreEffect.Emit(100);
-                    Destroy(hit.collider.gameObject);
-                    hitMonstreEffect.transform.SetParent(null);
-                    //Destroy(hitMonstreEffect.transform.parent.gameObject);
+                    OnEnemyHit?.Invoke(hit.collider.gameObject);
+                    nbMort++;
+                    hitMonstreEffect.transform.position = hit.point; /**/
+                    hitMonstreEffect.transform.forward = hit.normal; /**/
+                    hitMonstreEffect.Emit(100);                      /**/
+                    Destroy(hit.collider.gameObject);                /**/
+                    hitMonstreEffect.transform.SetParent(null);      /**/
                 }
                 else
                 {

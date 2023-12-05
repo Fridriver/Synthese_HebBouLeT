@@ -1,4 +1,6 @@
+using System.Collections;
 using TMPro.EditorUtilities;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 
 public class EnemiesSpawner : MonoBehaviour
@@ -7,51 +9,47 @@ public class EnemiesSpawner : MonoBehaviour
     [SerializeField] private float _spawnTime = 4;
     [SerializeField] private Transform[] _spawnPoints = default;
     [SerializeField] private GameObject[] _enemiesList = default;
-    private float _timer;
+    [SerializeField] private float _difficulte = 1.5f;
+    private float _multiplicateur = 1;
+    private bool isCoroutineRunning;
 
-    private Gun gun;
-
-    private void Start()
+    private void Update()
     {
-        gun = FindObjectOfType<Gun>();
-    }
-
-    void Update()
-    {
-        spawner();
+        wave();
     }
 
     private void spawner()
     {
-        if (_timer > _spawnTime)
-        {
-            if (gun.nbMort <= 0)
-            {
-                //Debug.Log("Rien. (" + gun.nbMort + ") vitesse : " + _spawnTime);
-                _spawnTime = 4;
-            }
-            else if (gun.nbMort > 0 && gun.nbMort < 1)
-            {
-                //Debug.Log("First Blood ! (" + gun.nbMort + ") vitesse : " + _spawnTime);
-                _spawnTime = 3;
-            }
-            else if (gun.nbMort >= 1 && gun.nbMort < 2)
-            {
-                //Debug.Log("Dead Dead Dead... (" + gun.nbMort + ") vitesse : " + _spawnTime);
-                _spawnTime = 2;
-            }
-            else if (gun.nbMort >= 2)
-            {
-                //Debug.Log("AAAAAAAAAAAAAAAAAAAH !! (" + gun.nbMort + ") vitesse : " + _spawnTime);
-                _spawnTime = 2;
-            }
-            GameObject randomEnemy = _enemiesList[Random.Range(0, _enemiesList.Length)];
-            Transform randomSpawn = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
-            GameObject enemie = Instantiate(randomEnemy, randomSpawn.position, randomSpawn.rotation);
-            enemie.transform.parent = _containerEnnemies.transform;
-
-            _timer = 0;
-        }
-        _timer += Time.deltaTime;
+        GameObject randomEnemy = _enemiesList[Random.Range(0, _enemiesList.Length)];
+        Transform randomSpawn = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+        GameObject enemie = Instantiate(randomEnemy, randomSpawn.position, randomSpawn.rotation);
+        enemie.transform.parent = _containerEnnemies.transform;
     }
+
+    private void wave()
+    {
+        if (_containerEnnemies.transform.childCount > 0 || isCoroutineRunning)
+        {
+            return;
+        }
+
+        StartCoroutine(SpawnDelay());
+    }
+
+    IEnumerator SpawnDelay()
+    {
+        isCoroutineRunning = true;
+
+        yield return new WaitForSeconds(3f);
+
+        for (int i = 0; i < _multiplicateur; i++)
+        {
+            spawner();
+            yield return new WaitForSeconds(1f);
+        }
+
+        _multiplicateur = Mathf.Round((float)(_multiplicateur * _difficulte));
+        isCoroutineRunning = false;
+    }
+
 }
