@@ -28,6 +28,7 @@ public class AuthentificationManager : MonoBehaviour
         // Variables qui contient les options d'initialisation
         // Ceci va nous permettre de savoir si nous sommes sur un clone en local
         InitializationOptions options = new InitializationOptions();
+       
 
 // Si on teste à partir de l'éditeur Unity
 //#if UNITY_EDITOR
@@ -49,8 +50,9 @@ public class AuthentificationManager : MonoBehaviour
         await UnityServices.InitializeAsync(options);
         // même principe pour le signin
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
+        
         SignIn?.Invoke();  // Déclenche l'évènement SignIn
-
+        Debug.Log("AuthentificationManager: Login");
         //VivoxService.Instance.Initialize();
         //VivoxVoiceManager.Instance.Login();
     }
@@ -58,6 +60,7 @@ public class AuthentificationManager : MonoBehaviour
     {
         //await VivoxVoiceManager.Instance.LogoutAsync();
         //await VivoxService.Instance.ShutdownAsync();
+        Debug.Log("AuthentificationManager: Logout");
         AuthenticationService.Instance.SignOut();
         SignOut?.Invoke();
     }

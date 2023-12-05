@@ -768,7 +768,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8771166627424403242, guid: 8e29b219143bfb84e9f668fd9d9e30d3, type: 3}
+  - {fileID: 2100000, guid: 465289df62e95dd46aed5e7640f35c4a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1241,7 +1241,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1468659945634269660}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5636,10 +5636,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PanelMenuPrincipal: {fileID: 8998345882797798873}
-  PanelOptions: {fileID: 0}
+  PanelOptions: {fileID: 1783214543761782475}
   btnOptions: {fileID: 6623254893589917423}
   btnQuitter: {fileID: 8170971359212347560}
-  btnRetourOptions: {fileID: 0}
+  btnRetourOptions: {fileID: 4540783286082986143}
 --- !u!1 &7600245355111353963
 GameObject:
   m_ObjectHideFlags: 0
@@ -6341,7 +6341,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: -8771166627424403242, guid: 8e29b219143bfb84e9f668fd9d9e30d3, type: 3}
+  - {fileID: 2100000, guid: 465289df62e95dd46aed5e7640f35c4a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

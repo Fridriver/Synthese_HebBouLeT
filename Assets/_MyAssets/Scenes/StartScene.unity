@@ -1896,6 +1896,11 @@ PrefabInstance:
       propertyPath: m_Reticle
       value: 
       objectReference: {fileID: 1843284449}
+    - target: {fileID: 7600245354860226026, guid: ebb0a06e47872cf4d960a5bc651c862a,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7600245354860226028, guid: ebb0a06e47872cf4d960a5bc651c862a,
         type: 3}
       propertyPath: m_InteractionManager

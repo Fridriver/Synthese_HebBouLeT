@@ -29,7 +29,7 @@ public class UIManagerLobby : MonoBehaviour
     private void Start()
     {
         // Affiche le panneau d'authentification au départ
-        ActiverUI(3);
+        //ActiverUI(3);
 
         // Appeler l'évènement SignIn de l'authentification
         AuthentificationManager.Instance.SignIn.AddListener(() => ActiverUI(0));
@@ -102,7 +102,6 @@ public class UIManagerLobby : MonoBehaviour
     {
         LobbyManager.Instance.LeaveLobbyAsync();
         AuthentificationManager.Instance.Logout();
-        NetworkManager.Singleton.Shutdown();
         SceneLoaderManager.Instance.LoadScene("StartScene");
        
     }
