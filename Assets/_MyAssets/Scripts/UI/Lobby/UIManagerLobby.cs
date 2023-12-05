@@ -29,11 +29,11 @@ public class UIManagerLobby : MonoBehaviour
     private void Start()
     {
         // Affiche le panneau d'authentification au départ
-        ActiverUI(3);
+        //ActiverUI(3);
 
         // Appeler l'évènement SignIn de l'authentification
         AuthentificationManager.Instance.SignIn.AddListener(() => ActiverUI(0));
-
+        
         // Rejoint le premier Lobby Actif
         _partieRapideButton.onClick.AddListener(() => LobbyManager.Instance.PartieRapideLobby());
 
@@ -101,7 +101,8 @@ public class UIManagerLobby : MonoBehaviour
     private void RetourMenuPrincipal()
     {
         LobbyManager.Instance.LeaveLobbyAsync();
-        SceneLoaderManager.Instance.LoadScene("StartScene");
         AuthentificationManager.Instance.Logout();
+        SceneLoaderManager.Instance.LoadScene("StartScene");
+       
     }
 }

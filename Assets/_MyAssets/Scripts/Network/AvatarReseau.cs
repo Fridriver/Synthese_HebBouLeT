@@ -13,6 +13,7 @@ public class AvatarReseau : NetworkBehaviour
     [SerializeField] private Transform _leftHandAvatar = default;  // LeftHand
     [SerializeField] private Transform _rightHandAvatar = default;  // RightHand
 
+
     private void Update()
     {
         if (IsOwner)
