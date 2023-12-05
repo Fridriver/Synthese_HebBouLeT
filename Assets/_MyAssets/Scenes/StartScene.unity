@@ -1896,16 +1896,21 @@ PrefabInstance:
       propertyPath: m_Reticle
       value: 
       objectReference: {fileID: 1843284449}
-    - target: {fileID: 7600245354860226026, guid: ebb0a06e47872cf4d960a5bc651c862a,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 7600245354860226028, guid: ebb0a06e47872cf4d960a5bc651c862a,
         type: 3}
       propertyPath: m_InteractionManager
       value: 
       objectReference: {fileID: 7873184977678273112}
+    - target: {fileID: 7600245354945742029, guid: ebb0a06e47872cf4d960a5bc651c862a,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.067
+      objectReference: {fileID: 0}
+    - target: {fileID: 7600245354945742029, guid: ebb0a06e47872cf4d960a5bc651c862a,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.201
+      objectReference: {fileID: 0}
     - target: {fileID: 7600245355111353965, guid: ebb0a06e47872cf4d960a5bc651c862a,
         type: 3}
       propertyPath: m_InteractionManager

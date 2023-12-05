@@ -1315,7 +1315,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _rootAvatar: {fileID: 6541161640663809562}
   _headAvatar: {fileID: 6541161642109387648}
-  _leftHandAvatar: {fileID: 6575842132558724303}
+  _leftHandAvatar: {fileID: 6541161642444865870}
   _rightHandAvatar: {fileID: 6541161641356295085}
 --- !u!114 &7795657251161631792
 MonoBehaviour:
