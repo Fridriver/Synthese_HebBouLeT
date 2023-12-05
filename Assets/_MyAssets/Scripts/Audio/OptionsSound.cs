@@ -5,16 +5,18 @@ using UnityEngine.UI;
 
 public class OptionsSound : MonoBehaviour
 {
-    [SerializeField] private string TypeOfSound;
+    [SerializeField] private string typeOfSound;
+    public string TypeOfSound { get { return typeOfSound; } }
 
     public Slider SoundSlider { get; private set; }
     public Toggle SoundToggle { get; private set; }
 
-    private void Awake()
+    private void Start()
     {
         SoundSlider = GetComponentInChildren<Slider>();
         SoundToggle = GetComponentInChildren<Toggle>();
     }
+
 
 
 

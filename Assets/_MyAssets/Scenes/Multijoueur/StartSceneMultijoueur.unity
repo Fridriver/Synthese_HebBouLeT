@@ -7480,6 +7480,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2284929357458430180, guid: 061e4093cb7ddbb40a5c957ed2d54981,
         type: 3}
+      propertyPath: BGMSlider
+      value: 
+      objectReference: {fileID: 1577610334}
+    - target: {fileID: 2284929357458430180, guid: 061e4093cb7ddbb40a5c957ed2d54981,
+        type: 3}
+      propertyPath: BGMToggle
+      value: 
+      objectReference: {fileID: 1577610331}
+    - target: {fileID: 2284929357458430180, guid: 061e4093cb7ddbb40a5c957ed2d54981,
+        type: 3}
       propertyPath: sfxSlider
       value: 
       objectReference: {fileID: 1577610333}
@@ -7498,6 +7508,16 @@ PrefabInstance:
       propertyPath: musicToggle
       value: 
       objectReference: {fileID: 1577610331}
+    - target: {fileID: 2284929357458430180, guid: 061e4093cb7ddbb40a5c957ed2d54981,
+        type: 3}
+      propertyPath: MasterSlider
+      value: 
+      objectReference: {fileID: 1577610335}
+    - target: {fileID: 2284929357458430180, guid: 061e4093cb7ddbb40a5c957ed2d54981,
+        type: 3}
+      propertyPath: MasterToggle
+      value: 
+      objectReference: {fileID: 1577610332}
     - target: {fileID: 2284929357458430180, guid: 061e4093cb7ddbb40a5c957ed2d54981,
         type: 3}
       propertyPath: masterSlider
