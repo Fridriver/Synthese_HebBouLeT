@@ -35,8 +35,7 @@ public class CanvasManager : MonoBehaviour
 
         ActivateRightPanel(0);
 
-        multijoueurButton.onClick.AddListener(() => GoToMultiplayerScene());
-
+        multijoueurButton.onClick.AddListener(() => GoToMultiplayerScene()); 
         optionsButton.onClick.AddListener(() => ActivateRightPanel(2, true));
         instructionsButton.onClick.AddListener(() => ActivateRightPanel(3, true));
 
