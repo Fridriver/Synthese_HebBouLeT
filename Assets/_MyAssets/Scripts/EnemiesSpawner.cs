@@ -12,6 +12,7 @@ public class EnemiesSpawner : MonoBehaviour
     [SerializeField] private float _difficulte = 1.5f;
     private float _multiplicateur = 1;
     private bool isCoroutineRunning;
+    public int _waveNumber { get; private set; }
 
     private void Update()
     {
@@ -41,6 +42,8 @@ public class EnemiesSpawner : MonoBehaviour
         isCoroutineRunning = true;
 
         yield return new WaitForSeconds(3f);
+
+        _waveNumber++;
 
         for (int i = 0; i < _multiplicateur; i++)
         {
