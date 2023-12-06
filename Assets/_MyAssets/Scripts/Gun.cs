@@ -17,7 +17,7 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private ParticleSystem hitEffect;
-    [SerializeField] private ParticleSystem hitMonstreEffect; /**/
+    //[SerializeField] private ParticleSystem hitMonstreEffect; /**/
     [SerializeField] private TrailRenderer tracerEffect;
     
     public int nbMort;
@@ -34,7 +34,7 @@ public class Gun : MonoBehaviour
 
     private LiquidAmmoDisplay liquidAmmoDisplay;
 
-    public event Action<GameObject> OnEnemyHit;
+    public event Action<GameObject,RaycastHit> OnEnemyHit;
 
     private void Start()
     {
@@ -98,13 +98,13 @@ public class Gun : MonoBehaviour
 
                 if (hit.collider.tag == "Ennemi")
                 {
-                    OnEnemyHit?.Invoke(hit.collider.gameObject);
+                    OnEnemyHit?.Invoke(hit.collider.gameObject, hit);
                     nbMort++;
-                    hitMonstreEffect.transform.position = hit.point; /**/
-                    hitMonstreEffect.transform.forward = hit.normal; /**/
-                    hitMonstreEffect.Emit(100);                      /**/
-                    Destroy(hit.collider.gameObject);                /**/
-                    hitMonstreEffect.transform.SetParent(null);      /**/
+                    //hitMonstreEffect.transform.position = hit.point; /**/
+                    //hitMonstreEffect.transform.forward = hit.normal; /**/
+                    //hitMonstreEffect.Emit(100);                      /**/
+                   // Destroy(hit.collider.gameObject);                /**/
+                    //hitMonstreEffect.transform.SetParent(null);      /**/
                 }
                 else
                 {

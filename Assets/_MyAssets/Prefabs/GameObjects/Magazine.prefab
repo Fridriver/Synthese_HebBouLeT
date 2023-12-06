@@ -200,7 +200,7 @@ SphereCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.04
+  m_Radius: 0.06
   m_Center: {x: 0, y: 0.01, z: 0.13}
 --- !u!114 &1388531219728189718
 MonoBehaviour:
@@ -214,7 +214,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3af509e554c975340987688da8cf78fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxBallesChargeur: 9
   nbBallesChargeur: 0
 --- !u!1 &1388531219945679559
 GameObject:
@@ -360,8 +359,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Container: {fileID: 0}
-  MinLiquidAmount: -0.52
-  MaxLiquidAmount: -0.46
+  MinLiquidAmount: 0
+  MaxLiquidAmount: 10
 --- !u!1 &1388531220542246192
 GameObject:
   m_ObjectHideFlags: 0

@@ -18,18 +18,22 @@ public class Magazine : MonoBehaviour
         nbBallesChargeur = maxBallesChargeur;
     }
 
-    private void OnCollisionStay(Collision collision)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (!(collision.gameObject.tag == "SocketMag"))
+  
+        
+        if(collision.gameObject.tag == "Environnement")
         {
+           
             StartCoroutine(Delay());
-            
         }
+   
     }
 
     IEnumerator Delay()
     {
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(3f);
         Destroy(gameObject);
     }
+
 }

@@ -10,15 +10,18 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        //Gun.OnEnemyHit += EventGunOnEnemyHit;
+        Gun = FindObjectOfType<Gun>();
+        Gun.OnEnemyHit += EventGunOnEnemyHit;
     }
 
-    private void EventGunOnEnemyHit(GameObject obj)
+    private void EventGunOnEnemyHit(GameObject obj,RaycastHit hit)
     {
-        hitMonstreEffect.transform.position = obj.transform.position;
-        hitMonstreEffect.transform.forward = obj.transform.position.normalized;
+        hitMonstreEffect.transform.position = hit.point;
+        hitMonstreEffect.transform.forward = hit.normal;
         hitMonstreEffect.Emit(100);
         hitMonstreEffect.transform.SetParent(null);
+        Gun.OnEnemyHit -= EventGunOnEnemyHit;
         Destroy(obj);
+        
     }
 }
