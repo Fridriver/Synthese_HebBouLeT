@@ -10,13 +10,17 @@ public class Magazine : MonoBehaviour
 {
     [SerializeField] public int maxBallesChargeur { get; private set; } = 19;
     public int nbBallesChargeur;
+    private  AmmunitionPanelManager ammunitionPanelManager;
 
     public event Action<int> EventNombreDeBalles;
+   
 
     private void Start()
     {
         nbBallesChargeur = maxBallesChargeur;
     }
+
+
 
     private void OnCollisionEnter(Collision collision)
     {

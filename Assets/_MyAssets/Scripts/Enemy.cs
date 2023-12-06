@@ -11,16 +11,16 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         Gun = FindObjectOfType<Gun>();
-        Gun.OnEnemyHit += EventGunOnEnemyHit;
+        Gun.OnEnemyHitEvent += OnEnemyHitEvent;
     }
 
-    private void EventGunOnEnemyHit(GameObject obj,RaycastHit hit)
+    private void OnEnemyHitEvent(GameObject obj,RaycastHit hit)
     {
         hitMonstreEffect.transform.position = hit.point;
         hitMonstreEffect.transform.forward = hit.normal;
         hitMonstreEffect.Emit(100);
         hitMonstreEffect.transform.SetParent(null);
-        Gun.OnEnemyHit -= EventGunOnEnemyHit;
+        Gun.OnEnemyHitEvent -= OnEnemyHitEvent;
         Destroy(obj);
         
     }

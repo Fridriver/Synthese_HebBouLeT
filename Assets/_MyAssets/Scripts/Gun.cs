@@ -12,6 +12,7 @@ public class Gun : MonoBehaviour
     private bool magazineIsInsert;
     private bool magazineIsLoaded = true;
 
+
     [Header("Gun")]
     [SerializeField] private Transform raycastOrigin;
 
@@ -34,7 +35,8 @@ public class Gun : MonoBehaviour
 
     private LiquidAmmoDisplay liquidAmmoDisplay;
 
-    public event Action<GameObject,RaycastHit> OnEnemyHit;
+    public event Action<GameObject,RaycastHit> OnEnemyHitEvent;
+    public event Action<string> OnAmmoChangeEvent;
 
     private void Start()
     {
@@ -47,6 +49,7 @@ public class Gun : MonoBehaviour
     {
         magazine = interactor.interactableObject.ConvertTo<Magazine>();
         magazine.EventNombreDeBalles += Magazine_EventNombreDeBalles;
+        OnAmmoChangeEvent?.Invoke(magazine.nbBallesChargeur.ToString());
         if (magazine.nbBallesChargeur == 0)
         {
             magazineIsLoaded = false;
@@ -74,8 +77,10 @@ public class Gun : MonoBehaviour
             return;
         }
         magazine.GetComponent<Magazine>().nbBallesChargeur -= obj;
+        OnAmmoChangeEvent?.Invoke(magazine.nbBallesChargeur.ToString());
     }
 
+    [ContextMenu("Shooting")]
     public void Shooting()
     {
         if (magazineIsInsert && magazineIsLoaded)
@@ -98,7 +103,7 @@ public class Gun : MonoBehaviour
 
                 if (hit.collider.tag == "Ennemi")
                 {
-                    OnEnemyHit?.Invoke(hit.collider.gameObject, hit);
+                    OnEnemyHitEvent?.Invoke(hit.collider.gameObject, hit);
                     nbMort++;
                     //hitMonstreEffect.transform.position = hit.point; /**/
                     //hitMonstreEffect.transform.forward = hit.normal; /**/
