@@ -1,7 +1,7 @@
 using System.Collections;
 using UnityEngine;
 
-public class Sante : MonoBehaviour
+public class Player_VR : MonoBehaviour
 {
     [Header("Stats Joueur")]
     [SerializeField] private float _gainSante = 20;
@@ -10,7 +10,6 @@ public class Sante : MonoBehaviour
     private float _sante;
     [Header("Zone de mort")]
     [SerializeField] private Collider _zoneMort = default;
-
 
 
 
@@ -40,11 +39,21 @@ public class Sante : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("Collision");
         if (collision.gameObject.tag == "Ennemi")
         {
             PlayerDead();
         }
     }
+
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Ennemi")
+    //    {
+    //        PlayerDead();
+    //    }
+    //}
+    
 
     private void PlayerDead()
     {
