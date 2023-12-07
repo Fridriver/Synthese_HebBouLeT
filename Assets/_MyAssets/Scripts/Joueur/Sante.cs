@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class Sante : MonoBehaviour
 {
+    [Header("Stats Joueur")]
     [SerializeField] private float _gainSante = 20;
     [SerializeField] private float _santePerteSec = 0.004f;
     [SerializeField] private float _maxSante = 100;
     private float _sante;
+    [Header("Zone de mort")]
+    [SerializeField] private Collider _zoneMort = default;
+
 
 
 

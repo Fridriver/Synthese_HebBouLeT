@@ -8,6 +8,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] private ParticleSystem hitMonstreEffect;
     private Gun Gun;
 
+    
+
     void Start()
     {
         Gun = FindObjectOfType<Gun>();
@@ -24,4 +26,5 @@ public class Enemy : MonoBehaviour
         Destroy(obj);
         
     }
+
 }

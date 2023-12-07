@@ -66,6 +66,7 @@ public class Gun : MonoBehaviour
     {
         magazine.EventNombreDeBalles -= Magazine_EventNombreDeBalles;
         audioSource.PlayOneShot(removeMagSound);
+        OnAmmoChangeEvent?.Invoke("0");
         magazine = null;
     }
 
