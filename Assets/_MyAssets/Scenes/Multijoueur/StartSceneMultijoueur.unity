@@ -415,6 +415,101 @@ MonoBehaviour:
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
+--- !u!1001 &206037789
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 7696548425071381460}
+    m_Modifications:
+    - target: {fileID: 3638034535753036354, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034535789108253, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034536056688093, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_Intensity
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034536753826270, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034536753826270, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -1.4190001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034536753826270, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.6320001
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034536753826270, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034536753826270, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034536753826270, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034536753826270, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.70710677
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034536753826270, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034536753826270, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034536753826270, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -90
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034536753826270, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034536753826271, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_Name
+      value: SelectionAvatar
+      objectReference: {fileID: 0}
+    - target: {fileID: 3638034537450926788, guid: 9f892500d32c3844abcfa8fddffceff1,
+        type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 9f892500d32c3844abcfa8fddffceff1, type: 3}
+--- !u!4 &206037790 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3638034536753826270, guid: 9f892500d32c3844abcfa8fddffceff1,
+    type: 3}
+  m_PrefabInstance: {fileID: 206037789}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &207198591
 GameObject:
   m_ObjectHideFlags: 0
@@ -1391,7 +1486,7 @@ Transform:
   - {fileID: 3127728407144553626}
   - {fileID: 3684432003677789955}
   m_Father: {fileID: 7696548425071381460}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &467057514
 GameObject:
@@ -10951,6 +11046,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 9014170784232099497}
+  - {fileID: 206037790}
   - {fileID: 458841658}
   m_Father: {fileID: 0}
   m_RootOrder: 0

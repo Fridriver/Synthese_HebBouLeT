@@ -16,17 +16,17 @@ public class UI_JeuCanvaManager : MonoBehaviour
     [Header("Boutons de retour")]
     [SerializeField] private Button btnRetourOptions;
 
-    private GameObject[] listePanels;
+    private GameObject[] listPanels;
 
     // Start is called before the first frame update
     private void Start()
     {
-        listePanels = new GameObject[] { PanelMenuPrincipal, PanelOptions };
+        listPanels = new GameObject[] { PanelMenuPrincipal, PanelOptions };
 
         ActivateRightPanel(0);
 
-        btnOptions.onClick.AddListener(() => ActivateRightPanel(1));
-        btnRetourOptions.onClick.AddListener(() => ActivateRightPanel(0));
+        btnOptions.onClick.AddListener(() => ActivateRightPanel(1, true));
+        btnRetourOptions.onClick.AddListener(() => ActivateRightPanel(0, false));
         btnQuitter.onClick.AddListener(() => Quit());
     }
 
@@ -37,16 +37,24 @@ public class UI_JeuCanvaManager : MonoBehaviour
 
     private void ActivateRightPanel(int index)
     {
-        for (int i = 0; i < listePanels.Length; i++)
+        for (int i = 0; i < listPanels.Length; i++)
         {
-            {
-                listePanels[i].SetActive(i == index);
-            }
+            listPanels[i].SetActive(i == index);
+        }
+    }
+
+    private void ActivateRightPanel(int index, bool positive)
+    {
+        for (int i = 0; i < listPanels.Length; i++)
+        {
+            listPanels[i].SetActive(i == index);
+            UIAudioPlayer.Play(positive);
         }
     }
 
     private void Quit()
     {
+        UIAudioPlayer.PlayNegative();
 #if UNITY_EDITOR
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
