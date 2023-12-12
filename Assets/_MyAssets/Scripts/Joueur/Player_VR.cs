@@ -1,5 +1,6 @@
 using System;
 using System.Collections;
+using Unity.Services.Lobbies.Models;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,20 +9,16 @@ public class Player_VR : MonoBehaviour
     private AudioSource audioSource;
 
     [Header("Stats Joueur")]
-    [SerializeField] private float _gainSante = 100f;
     [SerializeField] private float _santePerteSec = 0.5f;
-    [SerializeField] private float _maxSante = 1000f;
+    [SerializeField] public float _maxSante = 1000f;
     [SerializeField] private Image healthBar;
     [SerializeField] private AudioClip alertHealthLow;
     public float _sante;
     private bool isProgression = false;
     private bool isAlert = false;
-    public event Action<int> EventHeal;
 
     [Header("Zone de mort")]
     [SerializeField] private Collider _zoneMort = default;
-
-    
 
     void Start()
     {
@@ -29,7 +26,6 @@ public class Player_VR : MonoBehaviour
         _sante = _maxSante;
     }
 
-    // Update is called once per frame
     void Update()
     {
         Maladie();
@@ -62,11 +58,6 @@ public class Player_VR : MonoBehaviour
                 audioSource.PlayOneShot(alertHealthLow);
             }
         }
-    }
-
-    public void BlobHit()
-    {
-        _sante += _gainSante;
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -10,7 +10,7 @@ public class Magazine : MonoBehaviour
 {
     [SerializeField] public int maxBallesChargeur { get; private set; } = 19;
     public int nbBallesChargeur;
-    private  AmmunitionPanelManager ammunitionPanelManager;
+    private AmmunitionPanelManager ammunitionPanelManager;
 
     public event Action<int> EventNombreDeBalles;
    
