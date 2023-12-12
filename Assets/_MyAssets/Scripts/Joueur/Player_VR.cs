@@ -13,6 +13,7 @@ public class Player_VR : MonoBehaviour
     [SerializeField] public float _maxSante = 1000f;
     [SerializeField] private Image healthBar;
     [SerializeField] private AudioClip alertHealthLow;
+    [SerializeField] private GameObject LightHealthLow;
     public float _sante;
     private bool isProgression = false;
     private bool isAlert = false;
@@ -28,10 +29,6 @@ public class Player_VR : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space))
-        //{
-        //    _sante += 100;
-        //}
         Maladie();
         Alert();
     }
@@ -55,12 +52,17 @@ public class Player_VR : MonoBehaviour
     {
         if (_sante <= (0.25 *_maxSante))
         {
+            LightHealthLow.gameObject.SetActive(true);
             if (!isAlert)
             {
                 isAlert = true;
                 StartCoroutine(AlertWait());
                 audioSource.PlayOneShot(alertHealthLow);
             }
+        }
+        else
+        {
+            LightHealthLow.gameObject.SetActive(false);
         }
     }
 
