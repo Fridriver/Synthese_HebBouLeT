@@ -18,7 +18,6 @@ public class Gun : MonoBehaviour
 
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private ParticleSystem hitEffect;
-    //[SerializeField] private ParticleSystem hitMonstreEffect; /**/
     [SerializeField] private TrailRenderer tracerEffect;
     
     public int nbMort;
@@ -36,6 +35,7 @@ public class Gun : MonoBehaviour
     private LiquidAmmoDisplay liquidAmmoDisplay;
 
     public event Action<GameObject,RaycastHit> OnEnemyHitEvent;
+    public event Action<GameObject, RaycastHit> OnBlobHitEvent;
     public event Action<string> OnAmmoChangeEvent;
 
     private void Start()
@@ -106,11 +106,10 @@ public class Gun : MonoBehaviour
                 {
                     OnEnemyHitEvent?.Invoke(hit.collider.gameObject, hit);
                     nbMort++;
-                    //hitMonstreEffect.transform.position = hit.point; /**/
-                    //hitMonstreEffect.transform.forward = hit.normal; /**/
-                    //hitMonstreEffect.Emit(100);                      /**/
-                   // Destroy(hit.collider.gameObject);                /**/
-                    //hitMonstreEffect.transform.SetParent(null);      /**/
+                }
+                else if (hit.collider.tag == "Blob")
+                {
+                    OnBlobHitEvent?.Invoke(hit.collider.gameObject, hit);
                 }
                 else
                 {
@@ -123,7 +122,6 @@ public class Gun : MonoBehaviour
         else
         {
             audioSource.PlayOneShot(emptyMagSound);
-            //Jouer son de clic
         }
     }
 

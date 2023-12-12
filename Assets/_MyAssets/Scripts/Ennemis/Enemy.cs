@@ -35,13 +35,13 @@ public class Enemy : MonoBehaviour
 
     private void OnEnemyHitEvent(GameObject obj,RaycastHit hit)
     {
+        Debug.Log("OnEnemyHitEvent");
         hitMonstreEffect.transform.position = hit.point;
         hitMonstreEffect.transform.forward = hit.normal;
         hitMonstreEffect.Emit(100);
         hitMonstreEffect.transform.SetParent(null);
         Gun.OnEnemyHitEvent -= OnEnemyHitEvent;
         Destroy(obj);
-        
     }
 
   

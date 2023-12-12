@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,14 +8,15 @@ public class Player_VR : MonoBehaviour
     private AudioSource audioSource;
 
     [Header("Stats Joueur")]
-    [SerializeField] private float _gainSante = 20;
+    [SerializeField] private float _gainSante = 100f;
     [SerializeField] private float _santePerteSec = 0.5f;
     [SerializeField] private float _maxSante = 1000f;
     [SerializeField] private Image healthBar;
     [SerializeField] private AudioClip alertHealthLow;
-    private float _sante;
+    public float _sante;
     private bool isProgression = false;
     private bool isAlert = false;
+    public event Action<int> EventHeal;
 
     [Header("Zone de mort")]
     [SerializeField] private Collider _zoneMort = default;
@@ -45,7 +47,6 @@ public class Player_VR : MonoBehaviour
                 StartCoroutine(DiseaseProgression());
                 _sante--;
                 healthBar.fillAmount = _sante / _maxSante;
-                Debug.Log(_sante);
             }
         }
     }
@@ -59,7 +60,6 @@ public class Player_VR : MonoBehaviour
                 isAlert = true;
                 StartCoroutine(AlertWait());
                 audioSource.PlayOneShot(alertHealthLow);
-                Debug.Log("Alerte !!!");
             }
         }
     }

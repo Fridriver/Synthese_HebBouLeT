@@ -10,6 +10,7 @@ TagManager:
   - SocketGun
   - Gun
   - Environnement
+  - Blob
   layers:
   - Default
   - TransparentFX
