@@ -28,6 +28,10 @@ public class Player_VR : MonoBehaviour
 
     void Update()
     {
+        //if (Input.GetKeyDown(KeyCode.Space))
+        //{
+        //    _sante += 100;
+        //}
         Maladie();
         Alert();
     }

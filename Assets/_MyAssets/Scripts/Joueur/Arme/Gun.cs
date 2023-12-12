@@ -5,6 +5,10 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class Gun : MonoBehaviour
 {
+    [Header("Blob")]
+    private Player_VR player;
+    [SerializeField] private float _gainSante = 100f;
+
     [Header("Mag")]
     [SerializeField] private XRBaseInteractor socketInteractor = default;
 
@@ -40,6 +44,7 @@ public class Gun : MonoBehaviour
 
     private void Start()
     {
+        player = FindObjectOfType<Player_VR>();
         audioSource = GetComponent<AudioSource>();
         socketInteractor.selectEntered.AddListener(AddMagazine);
         socketInteractor.selectExited.AddListener(RemoveMagazine);
@@ -110,6 +115,7 @@ public class Gun : MonoBehaviour
                 else if (hit.collider.tag == "Blob")
                 {
                     OnBlobHitEvent?.Invoke(hit.collider.gameObject, hit);
+                    player._sante += _gainSante;
                 }
                 else
                 {

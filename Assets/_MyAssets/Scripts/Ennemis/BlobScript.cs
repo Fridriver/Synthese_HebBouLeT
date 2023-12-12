@@ -6,16 +6,17 @@ using UnityEngine;
 
 public class BlobScript : MonoBehaviour
 {
-    private Player_VR player;
+    //private Player_VR player;
     private Gun Gun;
 
     [SerializeField] private ParticleSystem hitMonstreEffect;
-    [SerializeField] private float _gainSante = 100f;
+    //[SerializeField] private float _gainSante = 100f;
+
     //public event Action<float> OnHealthChangeEvent;
 
     void Start()
     {
-        player = FindObjectOfType<Player_VR>();
+        //player = FindObjectOfType<Player_VR>();
         Gun = FindObjectOfType<Gun>();
         Gun.OnBlobHitEvent += OnBlobHitEvent;
     }
@@ -28,7 +29,8 @@ public class BlobScript : MonoBehaviour
         hitMonstreEffect.transform.SetParent(null);
         Gun.OnEnemyHitEvent -= OnBlobHitEvent;
 
-        player._sante += _gainSante;
+        //player._sante += _gainSante;
+
         //Player_EventChangeHealth(_gainSante);
         //player.EventHealth += Player_EventChangeHealth;
 
