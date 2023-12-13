@@ -170,7 +170,7 @@ SphereCollider:
   m_GameObject: {fileID: 2131216010937487099}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
   m_Radius: 0.9
   m_Center: {x: 0, y: 0, z: 0}
@@ -291,7 +291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9af764722dd03f45b9cc11fefa869d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionZoneEnnemi: {fileID: 8978022219126404153}
+  detectionZoneEnnemi: {fileID: 6689394087353256158}
   hitMonstreEffect: {fileID: 4164617274172217442}
   target: {fileID: 0}
 --- !u!1 &6681335294391022138

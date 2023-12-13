@@ -31,6 +31,7 @@ public class Player_VR : MonoBehaviour
     {
         Maladie();
         Alert();
+        SanteDead();
     }
 
 
@@ -87,6 +88,14 @@ public class Player_VR : MonoBehaviour
     {
         StartCoroutine(DeadWait());
         SceneLoaderManager.Instance.LoadScene("EndScene");
+    }
+
+    private void SanteDead()
+    {
+        if (_sante <= 0)
+        {
+            PlayerDead();
+        }
     }
 
     IEnumerator DeadWait()

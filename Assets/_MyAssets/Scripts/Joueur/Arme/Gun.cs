@@ -115,7 +115,15 @@ public class Gun : MonoBehaviour
                 else if (hit.collider.tag == "Blob")
                 {
                     OnBlobHitEvent?.Invoke(hit.collider.gameObject, hit);
-                    player._sante += _gainSante;
+                    if (player._maxSante - player._sante < _gainSante)
+                    {
+                        player._sante += player._maxSante - player._sante;
+                    }
+                    else
+                    {
+                        player._sante += _gainSante;
+                    }
+                    
                 }
                 else
                 {
