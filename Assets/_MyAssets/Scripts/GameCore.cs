@@ -29,6 +29,8 @@ public class GameCore : MonoBehaviour
     {
         EnemiesSpawner = FindObjectOfType<EnemiesSpawner>();
         EnemiesSpawner.waveUpdateEvent += OnWaveUpdateEvent;
+        killCount = 0;
+        waveCount = 0;
     }
 
     private void OnWaveUpdateEvent(int obj)

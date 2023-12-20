@@ -14,7 +14,8 @@ public class UI_OverlayManager : MonoBehaviour
     {
         EnemiesSpawner = FindObjectOfType<EnemiesSpawner>();
         EnemiesSpawner.waveUpdateEvent += OnWaveUpdateEvent;
-
+        waveTxt.enabled = false;
+        background.enabled = false;
         waveTxt.color = new Color(waveTxt.color.r, waveTxt.color.g, waveTxt.color.b, 0f);
         background.color = new Color(background.color.r, background.color.g, background.color.b, 0f);
     }
@@ -27,11 +28,18 @@ public class UI_OverlayManager : MonoBehaviour
 
     private IEnumerator ShowWaveTxt()
     {
-        yield return new WaitForSeconds(1f);
+
+        //yield return new WaitForSeconds(1f);
+        waveTxt.enabled = true;
+        background.enabled = true;
         StartCoroutine(Fade(0, 1));
 
         yield return new WaitForSeconds(3f);
         StartCoroutine(Fade(1, 0));
+
+        yield return new WaitForSeconds(2.1f);
+        waveTxt.enabled = false;
+        background.enabled = false;
     }
 
     private IEnumerator Fade(float a, float b)
