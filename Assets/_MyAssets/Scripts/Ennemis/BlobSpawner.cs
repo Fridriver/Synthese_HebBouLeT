@@ -9,7 +9,7 @@ public class BlobSpawner : MonoBehaviour
     [SerializeField] private Transform[] _spawnPoints = default;
     [SerializeField] private float spawnCooldown = 10f;
 
-    [SerializeField] private static int _ACTIVEBLOB = 3;
+    [SerializeField] private static int _ACTIVEBLOB = 6;
     private bool waitBlob = false;
 
 
