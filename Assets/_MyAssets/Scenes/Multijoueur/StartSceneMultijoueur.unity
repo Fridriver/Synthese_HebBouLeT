@@ -10223,6 +10223,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: JoindreLobbyPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 3887391672901743229, guid: 202a5fced8f18db49b62dacd7a1e249b,
+        type: 3}
+      propertyPath: _lobbyListElementPrefab
+      value: 
+      objectReference: {fileID: 4921926863588292186, guid: 89a1dbe4b74909b409d26ffdfbca360c,
+        type: 3}
     - target: {fileID: 3985542365902161646, guid: 202a5fced8f18db49b62dacd7a1e249b,
         type: 3}
       propertyPath: m_Pivot.x
