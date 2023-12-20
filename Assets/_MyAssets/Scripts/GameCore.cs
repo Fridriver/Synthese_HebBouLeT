@@ -5,7 +5,7 @@ public class GameCore : MonoBehaviour
     public static GameCore Instance { get; private set; }
 
     private int killCount;
-    private int waveCount;
+    public int waveCount { get; private set; }
 
     private EnemiesSpawner EnemiesSpawner;
 

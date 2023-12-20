@@ -16,6 +16,7 @@ public class Enemy : MonoBehaviour
 
     private NavMeshAgent navMeshAgent;
     [SerializeField] private Transform target;
+    private Player_VR player_VR;
 
     void Start()
     {
@@ -23,6 +24,7 @@ public class Enemy : MonoBehaviour
         Gun.OnEnemyHitEvent += OnEnemyHitEvent;
         navMeshAgent = GetComponent<NavMeshAgent>();
         target = FindObjectOfType<XROrigin>().transform;
+        player_VR = FindObjectOfType<Player_VR>();
     }
 
     private void Update()
@@ -30,7 +32,7 @@ public class Enemy : MonoBehaviour
         navMeshAgent.SetDestination(target.position);
 
         if (Vector3.Distance(target.position, transform.position) < 1.5f)
-            UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+           player_VR.PlayerDead();
     }
 
     private void OnEnemyHitEvent(GameObject obj,RaycastHit hit)

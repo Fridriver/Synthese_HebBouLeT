@@ -10,7 +10,7 @@ EditorBuildSettings:
     guid: 02abdf4e6d89ceb49bc2e1b1efe29e76
   - enabled: 1
     path: Assets/_MyAssets/Scenes/Multijoueur/StartSceneMultijoueur.unity
-    guid: 53e94047a2faafc40b4ae087f4cb1943
+    guid: c25a36363561ef74baef7f7202720d5b
   - enabled: 1
     path: Assets/_MyAssets/Scenes/Niveau.unity
     guid: 973ba35427dda7a469fa8ac14dfe2369

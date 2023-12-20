@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using Unity.Services.Lobbies.Models;
 using UnityEngine;
+using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class Player_VR : MonoBehaviour
@@ -18,8 +20,6 @@ public class Player_VR : MonoBehaviour
     private bool isProgression = false;
     private bool isAlert = false;
 
-    [Header("Zone de mort")]
-    [SerializeField] private Collider _zoneMort = default;
 
     void Start()
     {
@@ -67,27 +67,28 @@ public class Player_VR : MonoBehaviour
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        Debug.Log("Collision");
-        if (collision.gameObject.tag == "Ennemi")
-        {
-            PlayerDead();
-        }
-    }
+    //private void OnCollisionEnter(Collision collision)
+    //{
+    //    Debug.Log("Collision");
+    //    if (collision.gameObject.tag == "Ennemi")
+    //    {
+    //        PlayerDead();
+    //    }
+    //}
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Ennemi")
-        {
-            PlayerDead();
-        }
-    }
+    //private void OnTriggerEnter(Collider other)
+    //{
+    //    if (other.gameObject.tag == "Ennemi")
+    //    {
+    //        PlayerDead();
+    //    }
+    //}
 
-    private void PlayerDead()
+    public void PlayerDead()
     {
         StartCoroutine(DeadWait());
-        SceneLoaderManager.Instance.LoadScene("EndScene");
+        
+        
     }
 
     private void SanteDead()
@@ -100,7 +101,9 @@ public class Player_VR : MonoBehaviour
 
     IEnumerator DeadWait()
     {
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
+        SceneLoaderManager.Instance.LoadScene("EndScene");
+       
     }
 
     IEnumerator DiseaseProgression()
