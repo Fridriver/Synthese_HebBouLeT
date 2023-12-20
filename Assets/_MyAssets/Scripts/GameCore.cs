@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameCore : MonoBehaviour
 {
@@ -9,6 +10,7 @@ public class GameCore : MonoBehaviour
 
     private EnemiesSpawner EnemiesSpawner;
     private Gun gun;
+    private bool isAlreadyInSceneNiveau = false;
 
     private void Awake()
     {
@@ -28,12 +30,7 @@ public class GameCore : MonoBehaviour
     // Start is called before the first frame update
     private void Start()
     {
-        EnemiesSpawner = FindObjectOfType<EnemiesSpawner>();
-        EnemiesSpawner.waveUpdateEvent += OnWaveUpdateEvent;
-        gun = FindObjectOfType<Gun>();
-        gun.OnKillCountChangeEvent += OnKillCountChangeEvent;
-        killCount = 0;
-        waveCount = 0;
+        EventLoad();
     }
 
     private void OnWaveUpdateEvent(int obj)
@@ -45,8 +42,36 @@ public class GameCore : MonoBehaviour
         killCount = obj;
     }
 
+
     // Update is called once per frame
     private void Update()
     {
+        if(SceneManager.GetActiveScene().buildIndex == 3)
+        {
+            EventUnload();
+            isAlreadyInSceneNiveau = false;
+        }
+        if (SceneManager.GetActiveScene().buildIndex == 2 && !isAlreadyInSceneNiveau)
+        {
+            EventLoad();
+            isAlreadyInSceneNiveau = true;
+        }
+
+    }
+
+    private void EventLoad()
+    {
+        EnemiesSpawner = FindObjectOfType<EnemiesSpawner>();
+        EnemiesSpawner.waveUpdateEvent += OnWaveUpdateEvent;
+        gun = FindObjectOfType<Gun>();
+        gun.OnKillCountChangeEvent += OnKillCountChangeEvent;
+        killCount = 0;
+        waveCount = 0;
+    }
+
+    private void EventUnload()
+    {
+        EnemiesSpawner.waveUpdateEvent -= OnWaveUpdateEvent;
+        gun.OnKillCountChangeEvent -= OnKillCountChangeEvent;
     }
 }

@@ -14,6 +14,7 @@ public class SceneLoaderManager : MonoBehaviour
     
     public static SceneLoaderManager Instance => _instance;
 
+
     private void Awake()
     {
         if (_instance != null)

@@ -67,25 +67,9 @@ public class Player_VR : MonoBehaviour
         }
     }
 
-    //private void OnCollisionEnter(Collision collision)
-    //{
-    //    Debug.Log("Collision");
-    //    if (collision.gameObject.tag == "Ennemi")
-    //    {
-    //        PlayerDead();
-    //    }
-    //}
-
-    //private void OnTriggerEnter(Collider other)
-    //{
-    //    if (other.gameObject.tag == "Ennemi")
-    //    {
-    //        PlayerDead();
-    //    }
-    //}
-
     public void PlayerDead()
     {
+        
         StartCoroutine(DeadWait());
         
         
