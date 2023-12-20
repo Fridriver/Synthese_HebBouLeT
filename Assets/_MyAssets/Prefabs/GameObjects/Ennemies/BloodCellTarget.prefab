@@ -221,11 +221,11 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 5
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
-  m_StoppingDistance: 0
+  m_StoppingDistance: 0.5
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 1
   m_AutoRepath: 1
@@ -245,9 +245,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9af764722dd03f45b9cc11fefa869d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  detectionZoneEnnemi: {fileID: 6689394087353256158}
   hitMonstreEffect: {fileID: 4164617274172217442}
   target: {fileID: 0}
+  degatMonstres: 100
 --- !u!1 &6681335294391022138
 GameObject:
   m_ObjectHideFlags: 0

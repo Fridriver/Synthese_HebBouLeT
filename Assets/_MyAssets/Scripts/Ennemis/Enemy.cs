@@ -15,6 +15,7 @@ public class Enemy : MonoBehaviour
 
     private NavMeshAgent navMeshAgent;
     [SerializeField] private Transform target;
+    [SerializeField] private float degatMonstres = 20f;
     private Player_VR player_VR;
 
     void Start()
@@ -31,7 +32,11 @@ public class Enemy : MonoBehaviour
         navMeshAgent.SetDestination(target.position);
 
         if (Vector3.Distance(target.position, transform.position) < 1.5f)
-           player_VR.PlayerDead();
+        {
+            player_VR._sante -= degatMonstres;
+            Destroy(gameObject);
+            //player_VR.PlayerDead();
+        }
     }
 
     private void OnEnemyHitEvent(GameObject obj,RaycastHit hit)
