@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro.EditorUtilities;
 using Unity.XR.CoreUtils;
@@ -14,6 +15,8 @@ public class EnemiesSpawner : MonoBehaviour
     private bool isCoroutineRunning;
     public int _waveNumber { get; private set; }
 
+    public event Action<int> waveUpdateEvent;
+
     private void Update()
     {
         wave();
@@ -21,8 +24,8 @@ public class EnemiesSpawner : MonoBehaviour
 
     private void spawner()
     {
-        GameObject randomEnemy = _enemiesList[Random.Range(0, _enemiesList.Length)];
-        Transform randomSpawn = _spawnPoints[Random.Range(0, _spawnPoints.Length)];
+        GameObject randomEnemy = _enemiesList[UnityEngine.Random.Range(0, _enemiesList.Length)];
+        Transform randomSpawn = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Length)];
         GameObject enemie = Instantiate(randomEnemy, randomSpawn.position, randomSpawn.rotation);
         enemie.transform.parent = _containerEnnemies.transform;
     }
@@ -44,6 +47,7 @@ public class EnemiesSpawner : MonoBehaviour
         yield return new WaitForSeconds(3f);
 
         _waveNumber++;
+        waveUpdateEvent?.Invoke(_waveNumber);
 
         for (int i = 0; i < _multiplicateur; i++)
         {
