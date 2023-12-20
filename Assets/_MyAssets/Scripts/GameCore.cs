@@ -8,6 +8,7 @@ public class GameCore : MonoBehaviour
     public int waveCount { get; private set; }
 
     private EnemiesSpawner EnemiesSpawner;
+    private Gun gun;
 
     private void Awake()
     {
@@ -29,6 +30,8 @@ public class GameCore : MonoBehaviour
     {
         EnemiesSpawner = FindObjectOfType<EnemiesSpawner>();
         EnemiesSpawner.waveUpdateEvent += OnWaveUpdateEvent;
+        gun = FindObjectOfType<Gun>();
+        gun.OnKillCountChangeEvent += OnKillCountChangeEvent;
         killCount = 0;
         waveCount = 0;
     }
@@ -36,6 +39,10 @@ public class GameCore : MonoBehaviour
     private void OnWaveUpdateEvent(int obj)
     {
         waveCount = obj;
+    }
+    private void OnKillCountChangeEvent(int obj)
+    {
+        killCount = obj;
     }
 
     // Update is called once per frame

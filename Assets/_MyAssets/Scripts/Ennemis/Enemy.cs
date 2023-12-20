@@ -8,8 +8,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class Enemy : MonoBehaviour
 {
-    [Header("Zone de détection")]
-    [SerializeField] private Collider detectionZoneEnnemi;
+
     [Header("Effet de particule")]
     [SerializeField] private ParticleSystem hitMonstreEffect;
     private Gun Gun;
@@ -41,7 +40,6 @@ public class Enemy : MonoBehaviour
         hitMonstreEffect.transform.forward = hit.normal;
         hitMonstreEffect.Emit(100);
         hitMonstreEffect.transform.SetParent(null);
-        Gun.OnEnemyHitEvent -= OnEnemyHitEvent;
         Destroy(obj);
     }
 

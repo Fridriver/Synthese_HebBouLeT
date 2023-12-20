@@ -24,7 +24,7 @@ public class Gun : MonoBehaviour
     [SerializeField] private ParticleSystem hitEffect;
     [SerializeField] private TrailRenderer tracerEffect;
     
-    public int nbMort;
+    private int killCount;
     private Ray ray;
     private RaycastHit hit;
 
@@ -41,6 +41,7 @@ public class Gun : MonoBehaviour
     public event Action<GameObject,RaycastHit> OnEnemyHitEvent;
     public event Action<GameObject, RaycastHit> OnBlobHitEvent;
     public event Action<string> OnAmmoChangeEvent;
+    public event Action<int> OnKillCountChangeEvent;
 
     private void Start()
     {
@@ -110,7 +111,8 @@ public class Gun : MonoBehaviour
                 if (hit.collider.tag == "Ennemi")
                 {
                     OnEnemyHitEvent?.Invoke(hit.collider.gameObject, hit);
-                    nbMort++;
+                    OnKillCountChangeEvent?.Invoke(killCount++);
+                    
                 }
                 else if (hit.collider.tag == "Blob")
                 {
