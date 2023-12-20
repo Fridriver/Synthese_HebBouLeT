@@ -17,6 +17,11 @@ public class EnemiesSpawner : MonoBehaviour
 
     public event Action<int> waveUpdateEvent;
 
+    private void Start()
+    {
+        _waveNumber = 0;
+        waveUpdateEvent?.Invoke(_waveNumber);  
+    }
     private void Update()
     {
         wave();

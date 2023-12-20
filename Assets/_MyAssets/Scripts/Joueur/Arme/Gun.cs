@@ -49,6 +49,7 @@ public class Gun : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         socketInteractor.selectEntered.AddListener(AddMagazine);
         socketInteractor.selectExited.AddListener(RemoveMagazine);
+
     }
 
     public void AddMagazine(SelectEnterEventArgs interactor)
