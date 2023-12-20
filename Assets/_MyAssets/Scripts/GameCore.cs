@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameCore : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class GameCore : MonoBehaviour
     private int killCount;
     private int waveCount;
     [SerializeField] private TMP_Text waveTxt;
+    [SerializeField] private Image background;
 
     private EnemiesSpawner EnemiesSpawner;
 
@@ -36,6 +38,7 @@ public class GameCore : MonoBehaviour
         EnemiesSpawner = FindObjectOfType<EnemiesSpawner>();
         EnemiesSpawner.waveUpdateEvent += OnWaveUpdateEvent;
         waveTxt.color = new Color(waveTxt.color.r, waveTxt.color.g, waveTxt.color.b, 0f);
+        background.color = new Color(background.color.r, background.color.g, background.color.b, 0f);
     }
 
     private void OnWaveUpdateEvent(int obj)
@@ -63,6 +66,7 @@ public class GameCore : MonoBehaviour
         {
             alpha = Mathf.Lerp(a, b, t / fadeTime);
             waveTxt.color = new Color(waveTxt.color.r, waveTxt.color.g, waveTxt.color.b, alpha);
+            background.color = new Color(background.color.r, background.color.g, background.color.b, alpha);
             yield return null;
         }
     }
