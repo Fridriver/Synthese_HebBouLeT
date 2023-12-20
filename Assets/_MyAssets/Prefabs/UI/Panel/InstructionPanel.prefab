@@ -71,7 +71,7 @@ MonoBehaviour:
 '
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 655e1b81dd20ad148961f46a904514eb, type: 2}
-  m_sharedMaterial: {fileID: 9156731869424177862, guid: 50f8b769412e4ea43a3d6761c81e8921,
+  m_sharedMaterial: {fileID: 1980148416370953748, guid: 655e1b81dd20ad148961f46a904514eb,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -633,8 +633,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\xC0 l'aide du pistolet vous devez \xE9liminer tous les germes ou plaquettes
-    de sangs nuisible du corps de cette personne."
+  m_text: "\xC0 l'aide du pistolet vous devez \xE9liminer tous les germes ou globules
+    rouges nuisible du corps de cette personne."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 655e1b81dd20ad148961f46a904514eb, type: 2}
   m_sharedMaterial: {fileID: 1980148416370953748, guid: 655e1b81dd20ad148961f46a904514eb,
@@ -862,8 +862,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 7214163779229134386}
   m_HandleRect: {fileID: 2024704367456281154}
   m_Direction: 2
-  m_Value: 0.9999924
-  m_Size: 0.18501669
+  m_Value: 0.9999926
+  m_Size: 0.18501668
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
