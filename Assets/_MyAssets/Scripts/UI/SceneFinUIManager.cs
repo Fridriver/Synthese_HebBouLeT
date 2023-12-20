@@ -19,11 +19,11 @@ public class SceneFinUIManager : MonoBehaviour
 
     public void Rejouer()
     {
-        SceneManager.LoadScene(2);
+        SceneLoaderManager.Instance.LoadScene(2);
     }
 
     public void Retour()
     {
-        SceneManager.LoadScene(0);
+        SceneLoaderManager.Instance.LoadScene(0);
     }
 }
