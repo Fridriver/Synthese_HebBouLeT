@@ -18,7 +18,7 @@ public class LobbyListElement : MonoBehaviour
     public void Initialiser(Lobby lobby)
     {
         _txtLobbyName.text = lobby.Name;
-        _txtJoueurs.text = lobby.Players.Count + "\n/" + lobby.MaxPlayers;
+        _txtJoueurs.text = lobby.Players.Count + "/" + lobby.MaxPlayers;
         _lobbyID = lobby.Id;
     }
 }

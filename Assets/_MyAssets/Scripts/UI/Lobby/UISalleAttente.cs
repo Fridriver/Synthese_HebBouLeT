@@ -55,7 +55,7 @@ public class UISalleAttente : MonoBehaviour
                 //On verrouille le Lobby pour les autres joueurs
                 LobbyManager.Instance.LockLobby();
                 // Si oui on call la méthode pour changer de scène
-                NetworkSceneTransition.Instance.ChargerScenePourTous("Zombie");
+                NetworkSceneTransition.Instance.ChargerScenePourTous("NiveauMultijoueur");
             }
         }
 
