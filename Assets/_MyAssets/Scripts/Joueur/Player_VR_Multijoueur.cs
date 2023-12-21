@@ -1,17 +1,15 @@
-using System;
 using System.Collections;
-using Unity.Services.Lobbies.Models;
+using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.Analytics;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Player_VR_Multijoueur : MonoBehaviour
+public class Player_VR_Multijoueur : NetworkBehaviour
 {
     private AudioSource audioSource;
 
     [Header("Stats Joueur")]
     [SerializeField] private float _santePerteSec = 0.5f;
+
     [SerializeField] public float _maxSante = 1000f;
     [SerializeField] private Image healthBar;
     [SerializeField] private AudioClip alertHealthLow;
@@ -20,20 +18,20 @@ public class Player_VR_Multijoueur : MonoBehaviour
     private bool isProgression = false;
     private bool isAlert = false;
 
-
-    void Start()
+    private void Start()
     {
         audioSource = GetComponent<AudioSource>();
         _sante = _maxSante;
     }
 
-    void Update()
+    private void Update()
     {
+        if (!IsOwner)
+        { return; }
         Maladie();
         Alert();
         SanteDead();
     }
-
 
     private void Maladie()
     {
@@ -51,7 +49,7 @@ public class Player_VR_Multijoueur : MonoBehaviour
 
     private void Alert()
     {
-        if (_sante <= (0.25 *_maxSante))
+        if (_sante <= (0.25 * _maxSante))
         {
             LightHealthLow.gameObject.SetActive(true);
             if (!isAlert)
@@ -69,10 +67,7 @@ public class Player_VR_Multijoueur : MonoBehaviour
 
     public void PlayerDead()
     {
-        
         StartCoroutine(DeadWait());
-        
-        
     }
 
     private void SanteDead()
@@ -83,20 +78,19 @@ public class Player_VR_Multijoueur : MonoBehaviour
         }
     }
 
-    IEnumerator DeadWait()
+    private IEnumerator DeadWait()
     {
         yield return new WaitForSeconds(1f);
         SceneLoaderManager.Instance.LoadScene("EndScene");
-       
     }
 
-    IEnumerator DiseaseProgression()
+    private IEnumerator DiseaseProgression()
     {
         yield return new WaitForSeconds(_santePerteSec);
         isProgression = false;
     }
 
-    IEnumerator AlertWait()
+    private IEnumerator AlertWait()
     {
         yield return new WaitForSeconds(alertHealthLow.length + 2);
         isAlert = false;
