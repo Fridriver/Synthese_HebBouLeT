@@ -51,6 +51,7 @@ public class GunMultiplayer : NetworkBehaviour
 
     private void Start()
     {
+
         player = FindObjectOfType<Player_VR_Multijoueur>();
         audioSource = GetComponent<AudioSource>();
 
@@ -62,6 +63,7 @@ public class GunMultiplayer : NetworkBehaviour
         socketInteractor.selectEntered.AddListener(AddMagazine);
         socketInteractor.selectExited.AddListener(RemoveMagazine);
     }
+
 
     public void AddMagazine(SelectEnterEventArgs interactor)
     {
@@ -174,10 +176,19 @@ public class GunMultiplayer : NetworkBehaviour
     public void Loaded(SelectEnterEventArgs args)
     {
         magazineIsInsert = true;
+        foreach(var playerTemp in FindObjectsOfType<Player_VR_Multijoueur>())
+        {
+            if(playerTemp.IsLocalPlayer)
+            {
+                player = playerTemp;
+            }
+        }
+
     }
 
     public void UnLoaded(SelectExitEventArgs args)
     {
         magazineIsInsert = false;
+        player = null;
     }
 }
