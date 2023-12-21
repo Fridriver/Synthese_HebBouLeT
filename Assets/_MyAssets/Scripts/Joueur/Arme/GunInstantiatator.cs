@@ -13,7 +13,7 @@ public class GunInstantiatator : NetworkBehaviour
 
     private void Start()
     {
-        InstantiateGunClientRpc();
+        InstantiateGunServerRpc();
         ChargerInitialized = false;
     }
 
@@ -23,18 +23,18 @@ public class GunInstantiatator : NetworkBehaviour
         {
             return;
         }
-        InstantiateChargerClientRpc();
+        InstantiateChargerServerRpc();
     }
 
-    [ClientRpc]
-    private void InstantiateGunClientRpc()
+    [ServerRpc(RequireOwnership = false)]
+    private void InstantiateGunServerRpc()
     {
         Gun = Instantiate(GunPrefab, SocketGun.transform.position, Quaternion.identity);
         Gun.GetComponent<NetworkObject>().Spawn(true);
     }
 
-    [ClientRpc]
-    private void InstantiateChargerClientRpc()
+    [ServerRpc(RequireOwnership = false)]
+    private void InstantiateChargerServerRpc()
     {
         StartCoroutine(InstantiateCharger());
     }

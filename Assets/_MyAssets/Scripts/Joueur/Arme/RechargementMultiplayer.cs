@@ -7,8 +7,8 @@ public class RechargementMultiplayer : NetworkBehaviour
     [SerializeField] private GameObject ChargeurPrefab;
     [SerializeField] private GameObject Socket;
 
-    [ClientRpc]
-    public void RechargementMagazineClientRpc()
+    [ServerRpc(RequireOwnership = false)]
+    public void RechargementMagazineServerRpc()
     {
         StartCoroutine(Delay());
     }
