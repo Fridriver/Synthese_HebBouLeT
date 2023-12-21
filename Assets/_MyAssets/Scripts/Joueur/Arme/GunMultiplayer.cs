@@ -68,7 +68,7 @@ public class GunMultiplayer : NetworkBehaviour
     public void AddMagazine(SelectEnterEventArgs interactor)
     {
         magazine = interactor.interactableObject.ConvertTo<Magazine>();
-        magazine.EventNombreDeBalles += Magazine_EventNombreDeBalles;
+        magazine.EventNombreDeBalles += onEventNombreDeBalles;
         OnAmmoChangeEvent?.Invoke(magazine.nbBallesChargeur.ToString());
         if (magazine.nbBallesChargeur == 0)
         {
@@ -84,13 +84,13 @@ public class GunMultiplayer : NetworkBehaviour
 
     public void RemoveMagazine(SelectExitEventArgs interactor)
     {
-        magazine.EventNombreDeBalles -= Magazine_EventNombreDeBalles;
+        magazine.EventNombreDeBalles -= onEventNombreDeBalles;
         audioSource.PlayOneShot(removeMagSound);
         OnAmmoChangeEvent?.Invoke("0");
         magazine = null;
     }
 
-    private void Magazine_EventNombreDeBalles(int obj)
+    private void onEventNombreDeBalles(int obj)
     {
         if (magazine.nbBallesChargeur == 0)
         {
@@ -106,7 +106,7 @@ public class GunMultiplayer : NetworkBehaviour
     {
         if (magazineIsInsert && magazineIsLoaded)
         {
-            Magazine_EventNombreDeBalles(1);
+            onEventNombreDeBalles(1);
             audioSource.PlayOneShot(shotSound);
 
             muzzleFlash.Emit(1);

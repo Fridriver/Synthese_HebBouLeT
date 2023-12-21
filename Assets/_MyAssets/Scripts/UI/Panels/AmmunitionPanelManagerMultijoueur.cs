@@ -1,15 +1,15 @@
 using System;
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 
-public class AmmunitionPanelManager : MonoBehaviour
+public class AmmunitionPanelManagerMultijoueur : NetworkBehaviour
 {
     [SerializeField] private TMP_Text ammunitionText;
     
-    private Gun gun;
+    private GunMultiplayer gun;
     [SerializeField] private Color fullMagColor;
     [SerializeField] private Color emptyMagColor ;
 
@@ -18,7 +18,7 @@ public class AmmunitionPanelManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gun = GetComponentInParent<Gun>();
+        gun = GetComponentInParent<GunMultiplayer>();
         gun.OnAmmoChangeEvent += OnAmmoChangeEvent;
         
     }
