@@ -209,6 +209,7 @@ GameObject:
   - component: {fileID: 5789207875647804899}
   - component: {fileID: -8128715732225558116}
   - component: {fileID: 3320993206080843714}
+  - component: {fileID: 1801446464045012384}
   m_Layer: 0
   m_Name: MagazineMultijoueur
   m_TagString: Magazine
@@ -270,7 +271,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6003166017399482048}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3af509e554c975340987688da8cf78fd, type: 3}
   m_Name: 
@@ -474,6 +475,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNetworkGrabbed:
     m_InternalValue: 0
+--- !u!114 &1801446464045012384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6003166017399482048}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2fa06d6579b5a142a08267c09d76537, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nbBallesChargeur: 0
 --- !u!1 &6003166018189149460
 GameObject:
   m_ObjectHideFlags: 0

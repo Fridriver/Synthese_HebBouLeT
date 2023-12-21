@@ -1,7 +1,6 @@
 using System;
 using Unity.Netcode;
 using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
@@ -15,7 +14,7 @@ public class GunMultiplayer : NetworkBehaviour
     [Header("Mag")]
     [SerializeField] private XRBaseInteractor socketInteractor = default;
 
-    private Magazine magazine;
+    private MagazineMultiplayer magazine;
     private bool magazineIsInsert;
     private bool magazineIsLoaded = true;
 
@@ -60,14 +59,13 @@ public class GunMultiplayer : NetworkBehaviour
         gunInteractable.selectExited.AddListener(UnLoaded);
         gunInteractable.activated.AddListener(Shooting);
 
-
         socketInteractor.selectEntered.AddListener(AddMagazine);
         socketInteractor.selectExited.AddListener(RemoveMagazine);
     }
 
     public void AddMagazine(SelectEnterEventArgs interactor)
     {
-        magazine = interactor.interactableObject.ConvertTo<Magazine>();
+        magazine = interactor.interactableObject.ConvertTo<MagazineMultiplayer>();
         magazine.EventNombreDeBalles += onEventNombreDeBalles;
         OnAmmoChangeEvent?.Invoke(magazine.nbBallesChargeur.ToString());
         if (magazine.nbBallesChargeur == 0)
@@ -97,7 +95,7 @@ public class GunMultiplayer : NetworkBehaviour
             magazineIsLoaded = false;
             return;
         }
-        magazine.GetComponent<Magazine>().nbBallesChargeur -= obj;
+        magazine.GetComponent<MagazineMultiplayer>().nbBallesChargeur -= obj;
         OnAmmoChangeEvent?.Invoke(magazine.nbBallesChargeur.ToString());
     }
 
@@ -106,45 +104,8 @@ public class GunMultiplayer : NetworkBehaviour
     {
         if (magazineIsInsert && magazineIsLoaded)
         {
-            onEventNombreDeBalles(1);
-            
-            audioSource.PlayOneShot(shotSound);
-
-            muzzleFlash.Emit(1);
-
-            ray.origin = raycastOrigin.position;
-            ray.direction = raycastOrigin.forward;
-            var tracer = Instantiate(tracerEffect, ray.origin, Quaternion.identity);
-
-            tracer.AddPosition(ray.origin);
-            if (Physics.Raycast(ray, out hit))
-            {
-                tracer.transform.position = hit.point;
-
-                if (hit.collider.tag == "Ennemi")
-                {
-                    OnEnemyHitEvent?.Invoke(hit.collider.gameObject, hit);
-                    OnKillCountChangeEvent?.Invoke(killCount++);
-                }
-                else if (hit.collider.tag == "Blob")
-                {
-                    OnBlobHitEvent?.Invoke(hit.collider.gameObject, hit);
-                    if (player._maxSante - player._sante < _gainSante)
-                    {
-                        player._sante += player._maxSante - player._sante;
-                    }
-                    else
-                    {
-                        player._sante += _gainSante;
-                    }
-                }
-                else
-                {
-                    hitEffect.transform.position = hit.point;
-                    hitEffect.transform.forward = hit.normal;
-                    hitEffect.Emit(1);
-                }
-            }
+            Shoot();
+            ShootingServerRPC(NetworkManager.LocalClientId);
         }
         else
         {
@@ -152,6 +113,63 @@ public class GunMultiplayer : NetworkBehaviour
         }
     }
 
+    public void Shoot()
+    {
+        onEventNombreDeBalles(1);
+
+        audioSource.PlayOneShot(shotSound);
+
+        muzzleFlash.Emit(1);
+
+        ray.origin = raycastOrigin.position;
+        ray.direction = raycastOrigin.forward;
+        var tracer = Instantiate(tracerEffect, ray.origin, Quaternion.identity);
+
+        tracer.AddPosition(ray.origin);
+        if (Physics.Raycast(ray, out hit))
+        {
+            tracer.transform.position = hit.point;
+
+            if (hit.collider.tag == "Ennemi")
+            {
+                OnEnemyHitEvent?.Invoke(hit.collider.gameObject, hit);
+                OnKillCountChangeEvent?.Invoke(killCount++);
+            }
+            else if (hit.collider.tag == "Blob")
+            {
+                OnBlobHitEvent?.Invoke(hit.collider.gameObject, hit);
+                if (player._maxSante - player._sante < _gainSante)
+                {
+                    player._sante += player._maxSante - player._sante;
+                }
+                else
+                {
+                    player._sante += _gainSante;
+                }
+            }
+            else
+            {
+                hitEffect.transform.position = hit.point;
+                hitEffect.transform.forward = hit.normal;
+                hitEffect.Emit(1);
+            }
+        }
+    }
+
+    [ClientRpc]
+    public void ShootingClientRPC(ulong sender)
+    {
+        if (NetworkManager.LocalClientId != sender)
+        {
+            Shoot();
+        }
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    public void ShootingServerRPC(ulong sender)
+    {
+        ShootingClientRPC(sender);
+    }
 
     public void Loaded(SelectEnterEventArgs args)
     {
