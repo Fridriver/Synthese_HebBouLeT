@@ -1,18 +1,12 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.XR.CoreUtils;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.AI;
-using static UnityEngine.GraphicsBuffer;
-using Unity.Netcode;
-using Unity.Services.Lobbies.Models;
 
-public class EnemyMultijoueur: NetworkBehaviour
+public class EnemyMultijoueur : NetworkBehaviour
 {
-
     [Header("Effet de particule")]
     [SerializeField] private ParticleSystem hitMonstreEffect;
+
     private Gun Gun;
 
     private NavMeshAgent navMeshAgent;
@@ -21,10 +15,10 @@ public class EnemyMultijoueur: NetworkBehaviour
     [SerializeField] private float degatMonstres = 20f;
     private Player_VR player_VR;
 
-    void Start()
+    private void Start()
     {
         Gun = FindObjectOfType<Gun>();
-        Gun.OnEnemyHitEvent += OnEnemyHitEventClientRPC;
+        Gun.OnEnemyHitEvent += OnEnemyHitEvent;
         navMeshAgent = GetComponent<NavMeshAgent>();
         players = FindObjectsOfType<AvatarReseau>();
         player_VR = FindObjectOfType<Player_VR>();
@@ -36,16 +30,13 @@ public class EnemyMultijoueur: NetworkBehaviour
     {
         if (IsServer)
         {
-            
             ChoosingTarget();
-
         }
         else
         {
             target = null;
             navMeshAgent.enabled = false;
         }
-
     }
 
     private void ChoosingTarget()
@@ -69,21 +60,32 @@ public class EnemyMultijoueur: NetworkBehaviour
             {
                 player_VR._sante -= degatMonstres;
                 Destroy(gameObject);
-
             }
-
         }
-
     }
 
-    [ClientRpc]
-    private void OnEnemyHitEventClientRPC(GameObject obj,RaycastHit hit)
+    private void OnEnemyHitEvent(GameObject obj, RaycastHit hit)
+    {
+        DeathEnemy(obj, hit);
+        Destroy(obj);
+    }
+
+    private void DeathEnemy(GameObject obj, RaycastHit hit)
     {
         hitMonstreEffect.transform.position = hit.point;
         hitMonstreEffect.transform.forward = hit.normal;
         hitMonstreEffect.Emit(100);
         hitMonstreEffect.transform.SetParent(null);
         navMeshAgent.enabled = false;
+        DeathEnemyClientRPC();
         Destroy(obj);
+
     }
+
+    [ClientRpc]
+    public void DeathEnemyClientRPC()
+    {
+        Destroy(this);
+    }
+
 }
