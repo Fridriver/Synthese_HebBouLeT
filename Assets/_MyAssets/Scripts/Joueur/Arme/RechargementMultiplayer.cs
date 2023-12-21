@@ -9,29 +9,28 @@ public class RechargementMultiplayer : NetworkBehaviour
 
     public void Reload()
     {
-        StartCoroutine(ActualReload());
-        ReloadMagServerRpc(NetworkManager.LocalClientId);
-
+        StartCoroutine(ActualReload(Socket.transform.position, Quaternion.identity));
+        ReloadMagServerRpc(Socket.transform.position, Quaternion.identity, NetworkManager.LocalClientId);
     }
 
 
     [ServerRpc(RequireOwnership = false)]
-    public void ReloadMagServerRpc(ulong sender)
+    public void ReloadMagServerRpc(Vector3 pos, Quaternion rot, ulong sender)
     {
-        ReloadMagClientRpc(sender);
+        ReloadMagClientRpc(pos, rot, sender);
     }
 
     [ClientRpc]
-    public void ReloadMagClientRpc(ulong sender)
+    public void ReloadMagClientRpc(Vector3 pos, Quaternion rot, ulong sender)
     {
         if (NetworkManager.LocalClientId != sender)
-            ActualReload();
+            ActualReload(pos, rot);
     }
 
-    IEnumerator ActualReload()
+    IEnumerator ActualReload(Vector3 pos, Quaternion rot)
     {
         yield return new WaitForSeconds(2f);
-        GameObject chargeur = Instantiate(ChargeurPrefab, Socket.transform.position, Quaternion.identity);
-        chargeur.GetComponent<NetworkObject>().Spawn(true);
+        GameObject chargeur = Instantiate(ChargeurPrefab, pos, rot);
+        //chargeur.GetComponent<NetworkObject>().Spawn(true);
     }
 }

@@ -385,7 +385,6 @@ GameObject:
   - component: {fileID: 5812091742475572223}
   - component: {fileID: 6820378523250487583}
   - component: {fileID: 6812456557729125454}
-  - component: {fileID: 4040031586392239787}
   m_Layer: 0
   m_Name: Healmatic500Multijoueur
   m_TagString: Gun
@@ -795,18 +794,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNetworkGrabbed:
     m_InternalValue: 0
---- !u!114 &4040031586392239787
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1698673475380313936}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1698673475380313938
 GameObject:
   m_ObjectHideFlags: 0
