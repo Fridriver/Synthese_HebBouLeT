@@ -31,6 +31,6 @@ public class RechargementMultiplayer : NetworkBehaviour
     {
         yield return new WaitForSeconds(2f);
         GameObject chargeur = Instantiate(ChargeurPrefab, pos, rot);
-        //chargeur.GetComponent<NetworkObject>().Spawn(true);
+        chargeur.GetComponent<NetworkObject>().Spawn(true);
     }
 }
