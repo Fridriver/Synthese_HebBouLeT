@@ -361,12 +361,14 @@ GameObject:
   - component: {fileID: 1698673475380339568}
   - component: {fileID: 1698673475389656216}
   - component: {fileID: 1698673475380339571}
+  - component: {fileID: 6009240026598929815}
   - component: {fileID: 9028483309305415286}
   - component: {fileID: 1698673475380339581}
   - component: {fileID: -3395015311890765723}
   - component: {fileID: 5812091742475572223}
   - component: {fileID: 6820378523250487583}
   - component: {fileID: 6812456557729125454}
+  - component: {fileID: 4040031586392239787}
   m_Layer: 0
   m_Name: Healmatic500Multijoueur
   m_TagString: Gun
@@ -426,9 +428,32 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1698673475380313936}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0177e7d60123829499491b46e29f4bc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _gainSante: 100
+  socketInteractor: {fileID: 9028483310099723125}
+  raycastOrigin: {fileID: 9028483309534648880}
+  muzzleFlash: {fileID: 9190677691735447960}
+  hitEffect: {fileID: 6523469167696948802}
+  tracerEffect: {fileID: 2531099186951022280, guid: 95456c56d3b46894db495b23743bb350,
+    type: 3}
+  shotSound: {fileID: 8300000, guid: fbc2b14268d715446890c0fcedb6bd18, type: 3}
+  insertMagSound: {fileID: 8300000, guid: 2b83a124eecd528439db0077b21f2eb3, type: 3}
+  emptyMagSound: {fileID: 8300000, guid: 5a58ba85e6180de4dbaa7dbda3efaa2d, type: 3}
+  removeMagSound: {fileID: 8300000, guid: 884ec9dd57df3a449b971d2d0591ef72, type: 3}
+--- !u!114 &6009240026598929815
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698673475380313936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0aafa147af683943a83b6ca9d58d4c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   _gainSante: 100
@@ -629,7 +654,19 @@ MonoBehaviour:
       m_Calls: []
   m_Activated:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6009240026598929815}
+        m_TargetAssemblyTypeName: GunMultiplayer, Assembly-CSharp
+        m_MethodName: Shooting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_Deactivated:
     m_PersistentCalls:
       m_Calls: []
@@ -727,9 +764,9 @@ MonoBehaviour:
   SyncRotAngleX: 1
   SyncRotAngleY: 1
   SyncRotAngleZ: 1
-  SyncScaleX: 1
-  SyncScaleY: 1
-  SyncScaleZ: 1
+  SyncScaleX: 0
+  SyncScaleY: 0
+  SyncScaleZ: 0
   PositionThreshold: 0.001
   RotAngleThreshold: 0.01
   ScaleThreshold: 0.01
@@ -753,6 +790,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isNetworkGrabbed:
     m_InternalValue: 0
+--- !u!114 &4040031586392239787
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1698673475380313936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6c0be61502bb534f922ebb746851216, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1698673475380313938
 GameObject:
   m_ObjectHideFlags: 0
