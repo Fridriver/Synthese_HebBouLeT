@@ -293,7 +293,7 @@ GameObject:
   - component: {fileID: 5949802199157995707}
   - component: {fileID: -6876143550385113885}
   - component: {fileID: -8672798145996011782}
-  - component: {fileID: -7572526282747302014}
+  - component: {fileID: 4912327568434078365}
   m_Layer: 10
   m_Name: GermSlimeTarget
   m_TagString: Ennemi
@@ -384,7 +384,7 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &-7572526282747302014
+--- !u!114 &4912327568434078365
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -393,7 +393,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8070109232193553997}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9af764722dd03f45b9cc11fefa869d6, type: 3}
+  m_Script: {fileID: 11500000, guid: 87899307dfd09c841afba8c99e20524c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hitMonstreEffect: {fileID: 7317268543379728964}

@@ -46,12 +46,12 @@ public class GameCore : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(SceneManager.GetActiveScene().buildIndex == 3)
+        if(SceneManager.GetActiveScene().name == "EndScene")
         {
             EventUnload();
             isAlreadyInSceneNiveau = false;
         }
-        if (SceneManager.GetActiveScene().buildIndex == 2 && !isAlreadyInSceneNiveau)
+        if (SceneManager.GetActiveScene().name == "Niveau" && !isAlreadyInSceneNiveau)
         {
             EventLoad();
             isAlreadyInSceneNiveau = true;
