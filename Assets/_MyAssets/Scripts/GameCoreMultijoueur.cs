@@ -47,7 +47,7 @@ public class GameCoreMultijoueur : NetworkBehaviour
     // Update is called once per frame
     private void Update()
     {
-        if(SceneManager.GetActiveScene().name == "EndScene")
+        if(SceneManager.GetActiveScene().name == "EndSceneMultijoueur")
         {
             EventUnload();
             isAlreadyInSceneNiveau = false;
