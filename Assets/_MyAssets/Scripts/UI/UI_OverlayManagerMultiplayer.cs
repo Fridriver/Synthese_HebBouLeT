@@ -20,11 +20,13 @@ public class UI_OverlayManagerMultiplayer : MonoBehaviour
         background.color = new Color(background.color.r, background.color.g, background.color.b, 0f);
     }
 
+
     private void OnWaveUpdateEvent(int obj)
     {
         waveTxt.text = "Vague " + obj.ToString();
         StartCoroutine(ShowWaveTxt());
     }
+
 
     private IEnumerator ShowWaveTxt()
     {
