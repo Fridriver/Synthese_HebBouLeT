@@ -52,7 +52,7 @@ public class GameCoreMultijoueur : NetworkBehaviour
             EventUnload();
             isAlreadyInSceneNiveau = false;
         }
-        if (SceneManager.GetActiveScene().name == "Niveau" && !isAlreadyInSceneNiveau)
+        if (SceneManager.GetActiveScene().name == "NiveauMultijoueur" && !isAlreadyInSceneNiveau)
         {
             EventLoad();
             isAlreadyInSceneNiveau = true;
