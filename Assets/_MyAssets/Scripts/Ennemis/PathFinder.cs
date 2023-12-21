@@ -14,9 +14,5 @@ public class PathFinder : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        _agent.SetDestination(_target.position);
-    }
+
 }

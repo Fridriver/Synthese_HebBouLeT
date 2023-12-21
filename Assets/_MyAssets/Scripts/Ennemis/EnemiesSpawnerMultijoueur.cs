@@ -37,6 +37,7 @@ public class EnemiesSpawnerMultijoueur : NetworkBehaviour
         GameObject randomEnemy = _enemiesList[UnityEngine.Random.Range(0, _enemiesList.Length)];
         Transform randomSpawn = _spawnPoints[UnityEngine.Random.Range(0, _spawnPoints.Length)];
         GameObject enemie = Instantiate(randomEnemy, randomSpawn.position, randomSpawn.rotation);
+        enemie.GetComponent<NetworkObject>().Spawn(true);
         enemie.transform.parent = _containerEnnemies.transform;
     }
 
