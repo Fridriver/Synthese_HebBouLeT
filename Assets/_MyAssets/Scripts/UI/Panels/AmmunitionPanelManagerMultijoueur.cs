@@ -9,7 +9,7 @@ public class AmmunitionPanelManagerMultijoueur : NetworkBehaviour
 {
     [SerializeField] private TMP_Text ammunitionText;
     
-    private GunMultiplayer gun;
+    [SerializeField] private GunMultiplayer gun;
     [SerializeField] private Color fullMagColor;
     [SerializeField] private Color emptyMagColor ;
 
@@ -18,7 +18,7 @@ public class AmmunitionPanelManagerMultijoueur : NetworkBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gun = GetComponentInParent<GunMultiplayer>();
+     
         gun.OnAmmoChangeEvent += OnAmmoChangeEvent;
         
     }

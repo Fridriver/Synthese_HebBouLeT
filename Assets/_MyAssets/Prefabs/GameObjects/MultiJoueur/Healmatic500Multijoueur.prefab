@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 910403815501922624}
   - component: {fileID: 3375550705732697905}
   - component: {fileID: 5976536904431775148}
+  - component: {fileID: 1495095597217653419}
   m_Layer: 0
   m_Name: UI_AmmunitionCanvas
   m_TagString: Untagged
@@ -176,13 +177,29 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1179567284840029614}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 84cb14cb72f6f764bb89febcfb4f41aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   ammunitionText: {fileID: 8128230825502495708}
   fullMagColor: {r: 0.13333334, g: 0.9058824, b: 0.9490197, a: 1}
+  emptyMagColor: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &1495095597217653419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1179567284840029614}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e210e8daba6e3445b8897bc2c84b835, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammunitionText: {fileID: 8128230825502495708}
+  gun: {fileID: 6009240026598929815}
+  fullMagColor: {r: 0.13333334, g: 0.90588236, b: 0.9490196, a: 1}
   emptyMagColor: {r: 1, g: 1, b: 1, a: 1}
 --- !u!1 &1698673475380313928
 GameObject:

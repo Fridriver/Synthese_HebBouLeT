@@ -107,6 +107,7 @@ public class GunMultiplayer : NetworkBehaviour
         if (magazineIsInsert && magazineIsLoaded)
         {
             onEventNombreDeBalles(1);
+            
             audioSource.PlayOneShot(shotSound);
 
             muzzleFlash.Emit(1);
