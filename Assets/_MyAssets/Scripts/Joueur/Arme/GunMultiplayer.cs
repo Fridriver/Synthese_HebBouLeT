@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit;
 public class GunMultiplayer : NetworkBehaviour
 {
     [Header("Blob")]
-    private Player_VR player;
+    private Player_VR_Multijoueur player;
 
     [SerializeField] private float _gainSante = 100f;
 
@@ -51,7 +51,7 @@ public class GunMultiplayer : NetworkBehaviour
 
     private void Start()
     {
-        player = FindObjectOfType<Player_VR>();
+        player = FindObjectOfType<Player_VR_Multijoueur>();
         audioSource = GetComponent<AudioSource>();
 
         gunInteractable = GetComponent<NetworkXRGrabInteractable>();
