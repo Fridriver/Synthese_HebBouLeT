@@ -47,7 +47,6 @@ public class GunMultiplayer : NetworkBehaviour
 
     public event Action<string> OnAmmoChangeEvent;
 
-    public event Action<int> OnKillCountChangeEvent;
 
     private void Start()
     {
@@ -134,8 +133,9 @@ public class GunMultiplayer : NetworkBehaviour
 
             if (hit.collider.tag == "Ennemi")
             {
+                Debug.Log("Ennemi touché");
                 OnEnemyHitEvent?.Invoke(hit.collider.gameObject, hit);
-                OnKillCountChangeEvent?.Invoke(killCount++);
+                
             }
             else if (hit.collider.tag == "Blob")
             {
@@ -164,6 +164,7 @@ public class GunMultiplayer : NetworkBehaviour
         if (NetworkManager.LocalClientId != sender)
         {
             Shoot();
+            Debug.Log("ShootingClientRPC");
         }
     }
 
@@ -171,6 +172,7 @@ public class GunMultiplayer : NetworkBehaviour
     public void ShootingServerRPC(ulong sender)
     {
         ShootingClientRPC(sender);
+        Debug.Log("ShootingServerRPC");
     }
 
     public void Loaded(SelectEnterEventArgs args)
