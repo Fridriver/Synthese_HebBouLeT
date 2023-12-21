@@ -13,7 +13,7 @@ public class EnemyMultijoueur : NetworkBehaviour
     private Transform target;
     private AvatarReseau[] players;
     [SerializeField] private float degatMonstres = 20f;
-    private Player_VRMultijoueur player_VR;
+    private Player_VR_Multijoueur player_VR;
 
     private void Start()
     {
@@ -21,7 +21,7 @@ public class EnemyMultijoueur : NetworkBehaviour
         Gun.OnEnemyHitEvent += OnEnemyHitEvent;
         navMeshAgent = GetComponent<NavMeshAgent>();
         players = FindObjectsOfType<AvatarReseau>();
-        player_VR = FindObjectOfType<Player_VRMultijoueur>();
+        player_VR = FindObjectOfType<Player_VR_Multijoueur>();
 
         ChoosingTarget();
     }
