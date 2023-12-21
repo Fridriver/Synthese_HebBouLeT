@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_MyAssets/Scenes/EndScene.unity
     guid: 321c29f195e72ac459f16531896acc33
+  - enabled: 1
+    path: Assets/_MyAssets/Scenes/Multijoueur/EndSceneMultijoueur.unity
+    guid: 9ea50251e1165e94891999aee07b9361
   m_configObjects:
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 5c36e2e383503294ab871b0cd5042be7,
       type: 2}

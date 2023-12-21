@@ -63,13 +63,14 @@ public class EnemyMultijoueur : NetworkBehaviour
 
     private void PlayerIsInRange()
     {
-        Debug.Log("Player is in Range");
+        
         foreach (var player in players)
         {
 
             if (Vector3.Distance(player.transform.position, transform.position) < 1.5f)
             {
-               NetworkSceneTransition.Instance.ChargerScenePourTous("EndSceneMultijoueur");
+                Debug.Log("Player is in Range");
+                NetworkSceneTransition.Instance.ChargerScenePourTous("EndSceneMultijoueur");
             }
 
         }

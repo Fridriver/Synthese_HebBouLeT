@@ -32,6 +32,8 @@ public class SceneFinUIManagerMultijoueur : NetworkBehaviour
 
     public void Retour()
     {
-        SceneLoaderManager.Instance.LoadScene(1);
+        LobbyManager.Instance.LeaveLobbyAsync();
+        AuthentificationManager.Instance.Logout();
+        SceneLoaderManager.Instance.LoadScene("StartScene");
     }
 }
