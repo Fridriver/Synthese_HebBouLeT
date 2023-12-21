@@ -1,12 +1,15 @@
 using System;
+using Unity.Netcode;
 using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class GunMultiplayer : MonoBehaviour
+public class GunMultiplayer : NetworkBehaviour
 {
     [Header("Blob")]
     private Player_VR player;
+
     [SerializeField] private float _gainSante = 100f;
 
     [Header("Mag")]
@@ -16,14 +19,15 @@ public class GunMultiplayer : MonoBehaviour
     private bool magazineIsInsert;
     private bool magazineIsLoaded = true;
 
-
     [Header("Gun")]
     [SerializeField] private Transform raycastOrigin;
 
     [SerializeField] private ParticleSystem muzzleFlash;
     [SerializeField] private ParticleSystem hitEffect;
     [SerializeField] private TrailRenderer tracerEffect;
-    
+
+    private NetworkXRGrabInteractable gunInteractable;
+
     private int killCount;
     private Ray ray;
     private RaycastHit hit;
@@ -38,24 +42,33 @@ public class GunMultiplayer : MonoBehaviour
 
     private LiquidAmmoDisplay liquidAmmoDisplay;
 
-    public event Action<GameObject,RaycastHit> OnEnemyHitEvent;
+    public event Action<GameObject, RaycastHit> OnEnemyHitEvent;
+
     public event Action<GameObject, RaycastHit> OnBlobHitEvent;
+
     public event Action<string> OnAmmoChangeEvent;
+
     public event Action<int> OnKillCountChangeEvent;
 
     private void Start()
     {
         player = FindObjectOfType<Player_VR>();
         audioSource = GetComponent<AudioSource>();
+
+        gunInteractable = GetComponent<NetworkXRGrabInteractable>();
+        gunInteractable.selectEntered.AddListener(Loaded);
+        gunInteractable.selectExited.AddListener(UnLoaded);
+        gunInteractable.activated.AddListener(Shooting);
+
+
         socketInteractor.selectEntered.AddListener(AddMagazine);
         socketInteractor.selectExited.AddListener(RemoveMagazine);
-
     }
 
     public void AddMagazine(SelectEnterEventArgs interactor)
     {
         magazine = interactor.interactableObject.ConvertTo<Magazine>();
-        magazine.EventNombreDeBalles += Magazine_EventNombreDeBalles;
+        magazine.EventNombreDeBalles += onEventNombreDeBalles;
         OnAmmoChangeEvent?.Invoke(magazine.nbBallesChargeur.ToString());
         if (magazine.nbBallesChargeur == 0)
         {
@@ -71,13 +84,13 @@ public class GunMultiplayer : MonoBehaviour
 
     public void RemoveMagazine(SelectExitEventArgs interactor)
     {
-        magazine.EventNombreDeBalles -= Magazine_EventNombreDeBalles;
+        magazine.EventNombreDeBalles -= onEventNombreDeBalles;
         audioSource.PlayOneShot(removeMagSound);
         OnAmmoChangeEvent?.Invoke("0");
         magazine = null;
     }
 
-    private void Magazine_EventNombreDeBalles(int obj)
+    private void onEventNombreDeBalles(int obj)
     {
         if (magazine.nbBallesChargeur == 0)
         {
@@ -89,11 +102,12 @@ public class GunMultiplayer : MonoBehaviour
     }
 
     [ContextMenu("Shooting")]
-    public void Shooting()
+    public void Shooting(ActivateEventArgs args)
     {
         if (magazineIsInsert && magazineIsLoaded)
         {
-            Magazine_EventNombreDeBalles(1);
+            onEventNombreDeBalles(1);
+            
             audioSource.PlayOneShot(shotSound);
 
             muzzleFlash.Emit(1);
@@ -105,15 +119,12 @@ public class GunMultiplayer : MonoBehaviour
             tracer.AddPosition(ray.origin);
             if (Physics.Raycast(ray, out hit))
             {
-
-
                 tracer.transform.position = hit.point;
 
                 if (hit.collider.tag == "Ennemi")
                 {
                     OnEnemyHitEvent?.Invoke(hit.collider.gameObject, hit);
                     OnKillCountChangeEvent?.Invoke(killCount++);
-                    
                 }
                 else if (hit.collider.tag == "Blob")
                 {
@@ -126,7 +137,6 @@ public class GunMultiplayer : MonoBehaviour
                     {
                         player._sante += _gainSante;
                     }
-                    
                 }
                 else
                 {
@@ -142,12 +152,13 @@ public class GunMultiplayer : MonoBehaviour
         }
     }
 
-    public void Loaded()
+
+    public void Loaded(SelectEnterEventArgs args)
     {
         magazineIsInsert = true;
     }
 
-    public void UnLoaded()
+    public void UnLoaded(SelectExitEventArgs args)
     {
         magazineIsInsert = false;
     }
