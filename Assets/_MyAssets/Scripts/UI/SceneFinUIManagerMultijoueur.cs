@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.SceneManagement;
 using Unity.Netcode;
+using Unity.Services.Relay;
 
 public class SceneFinUIManagerMultijoueur : NetworkBehaviour
 {
@@ -24,9 +25,10 @@ public class SceneFinUIManagerMultijoueur : NetworkBehaviour
 
     public void Rejouer()
     {
+        LobbyManager.Instance.LeaveLobbyAsync();
         panelLobby.SetActive(true);
         panelFinDeJeu.SetActive(false);
-       //SceneLoaderManager.Instance.LoadScene(1);
+        //SceneLoaderManager.Instance.LoadScene(1);
 
     }
 
