@@ -4,10 +4,11 @@ using Unity.Netcode;
 
 public class RechargementMultiplayer : NetworkBehaviour
 {
-    [SerializeField] private GameObject Chargeur;
+    [SerializeField] private GameObject ChargeurPrefab;
     [SerializeField] private GameObject Socket;
 
-    public void RechargementMagazine()
+    [ClientRpc]
+    public void RechargementMagazineClientRpc()
     {
         StartCoroutine(Delay());
     }
@@ -15,7 +16,7 @@ public class RechargementMultiplayer : NetworkBehaviour
     IEnumerator Delay()
     {
         yield return new WaitForSeconds(2f);
-        Instantiate(Chargeur, Socket.transform.position, Quaternion.identity);
-        Chargeur.GetComponent<NetworkObject>().Spawn(true);
+        GameObject chargeur = Instantiate(ChargeurPrefab, Socket.transform.position, Quaternion.identity);
+        chargeur.GetComponent<NetworkObject>().Spawn(true);
     }
 }

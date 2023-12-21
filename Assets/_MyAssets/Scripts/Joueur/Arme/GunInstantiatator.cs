@@ -16,8 +16,7 @@ public class GunInstantiatator : NetworkBehaviour
 
     void Start()
     {
-        Gun = Instantiate(GunPrefab, SocketGun.transform.position, Quaternion.identity);
-        GunPrefab.GetComponent<NetworkObject>().Spawn(true);
+        InstantiateGunClientRpc();
         ChargerInitialized = false;
     }
 
@@ -27,6 +26,19 @@ public class GunInstantiatator : NetworkBehaviour
         {
             return;
         }
+        InstantiateChargerClientRpc();
+    }
+
+    [ClientRpc]
+    private void InstantiateGunClientRpc()
+    {
+        Gun = Instantiate(GunPrefab, SocketGun.transform.position, Quaternion.identity);
+        Gun.GetComponent<NetworkObject>().Spawn(true);
+    }
+
+    [ClientRpc]
+    private void InstantiateChargerClientRpc()
+    {
         StartCoroutine(InstantiateCharger());
     }
 
@@ -35,7 +47,7 @@ public class GunInstantiatator : NetworkBehaviour
         ChargerInitialized = true;
         yield return new WaitForSeconds(0.5f);
         GunPosition = Gun.transform.Find("Socket").transform.position;
-        Instantiate(ChargeurPrefab, GunPosition, Gun.transform.Find("Socket").transform.rotation);
-        ChargeurPrefab.GetComponent<NetworkObject>().Spawn(true);
+        GameObject charger =Instantiate(ChargeurPrefab, GunPosition, Gun.transform.Find("Socket").transform.rotation);
+        charger.GetComponent<NetworkObject>().Spawn(true);
     }
 }
