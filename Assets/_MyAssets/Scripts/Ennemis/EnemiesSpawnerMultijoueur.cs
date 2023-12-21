@@ -23,6 +23,7 @@ public class EnemiesSpawnerMultijoueur : NetworkBehaviour
         _waveNumber = 0;
         waveUpdateEvent?.Invoke(_waveNumber);  
     }
+
     private void Update()
     {
         if (!IsServer)

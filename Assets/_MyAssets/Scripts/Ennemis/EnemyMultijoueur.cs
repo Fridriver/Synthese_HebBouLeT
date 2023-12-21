@@ -13,17 +13,20 @@ public class EnemyMultijoueur : NetworkBehaviour
     private Transform target;
     private AvatarReseau[] players;
     [SerializeField] private float degatMonstres = 20f;
-    private Player_VR_Multijoueur player_VR;
+    private Player_VR_Multijoueur[] player_VR;
 
     private void Start()
     {
         Gun = FindObjectOfType<Gun>();
         Gun.OnEnemyHitEvent += OnEnemyHitEvent;
         navMeshAgent = GetComponent<NavMeshAgent>();
-        players = FindObjectsOfType<AvatarReseau>();
-        player_VR = FindObjectOfType<Player_VR_Multijoueur>();
 
-        ChoosingTarget();
+        if (IsServer)
+        {
+            players = FindObjectsOfType<AvatarReseau>();
+            player_VR = FindObjectsOfType<Player_VR_Multijoueur>();
+            target = players[Random.Range(0, players.Length)].RootAvatar;
+        }
     }
 
     private void Update()
@@ -31,6 +34,7 @@ public class EnemyMultijoueur : NetworkBehaviour
         if (IsServer)
         {
             ChoosingTarget();
+            PlayerIsInRange();
         }
         else
         {
@@ -54,13 +58,21 @@ public class EnemyMultijoueur : NetworkBehaviour
 
         navMeshAgent.SetDestination(target.position);
 
+        
+    }
+
+    private void PlayerIsInRange()
+    {
+        
         foreach (var player in players)
         {
+
             if (Vector3.Distance(player.transform.position, transform.position) < 1.5f)
             {
-                player_VR._sante -= degatMonstres;
-                Destroy(gameObject);
+                Debug.Log("Player is in Range");
+                NetworkSceneTransition.Instance.ChargerScenePourTous("EndSceneMultijoueur");
             }
+
         }
     }
 
@@ -79,7 +91,6 @@ public class EnemyMultijoueur : NetworkBehaviour
         navMeshAgent.enabled = false;
         DeathEnemyClientRPC();
         Destroy(obj);
-
     }
 
     [ClientRpc]
@@ -87,5 +98,4 @@ public class EnemyMultijoueur : NetworkBehaviour
     {
         Destroy(this);
     }
-
 }

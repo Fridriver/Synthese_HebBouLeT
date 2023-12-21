@@ -9,7 +9,7 @@ public class GameCoreMultijoueur : NetworkBehaviour
     private int killCount;
     public int waveCount { get; private set; }
 
-    private EnemiesSpawner EnemiesSpawner;
+    private EnemiesSpawnerMultijoueur EnemiesSpawner;
     private Gun gun;
     private bool isAlreadyInSceneNiveau = false;
 
@@ -62,7 +62,7 @@ public class GameCoreMultijoueur : NetworkBehaviour
 
     private void EventLoad()
     {
-        EnemiesSpawner = FindObjectOfType<EnemiesSpawner>();
+        EnemiesSpawner = FindObjectOfType<EnemiesSpawnerMultijoueur>();
         EnemiesSpawner.waveUpdateEvent += OnWaveUpdateEvent;
         gun = FindObjectOfType<Gun>();
         gun.OnKillCountChangeEvent += OnKillCountChangeEvent;
@@ -70,9 +70,13 @@ public class GameCoreMultijoueur : NetworkBehaviour
         waveCount = 0;
     }
 
+
     private void EventUnload()
     {
         EnemiesSpawner.waveUpdateEvent -= OnWaveUpdateEvent;
         gun.OnKillCountChangeEvent -= OnKillCountChangeEvent;
     }
+
+    
+
 }
