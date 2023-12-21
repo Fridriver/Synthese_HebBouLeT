@@ -1,5 +1,51 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &966567009
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 966567010}
+  - component: {fileID: 966567011}
+  m_Layer: 0
+  m_Name: Collider (2)
+  m_TagString: Gun
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &966567010
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966567009}
+  m_LocalRotation: {x: 0.43421164, y: -0, z: -0, w: 0.90081084}
+  m_LocalPosition: {x: 0, y: 0.124, z: 0.14}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9026479501749974553}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 51.47, y: 0, z: 0}
+--- !u!136 &966567011
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 966567009}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.05
+  m_Height: 0.13
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1175800993575338327
 GameObject:
   m_ObjectHideFlags: 0
@@ -62,7 +108,7 @@ Canvas:
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_TargetDisplay: 0
 --- !u!114 &3440455358107843792
 MonoBehaviour:
@@ -548,13 +594,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0177e7d60123829499491b46e29f4bc2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _gainSante: 100
   socketInteractor: {fileID: 9026479501480734604}
   raycastOrigin: {fileID: 9026479500913329865}
   muzzleFlash: {fileID: 9188533317726389601}
   hitEffect: {fileID: 6523435821488009915}
   tracerEffect: {fileID: 2531099186951022280, guid: 95456c56d3b46894db495b23743bb350,
     type: 3}
-  nbMort: 0
   shotSound: {fileID: 8300000, guid: fbc2b14268d715446890c0fcedb6bd18, type: 3}
   insertMagSound: {fileID: 8300000, guid: 2b83a124eecd528439db0077b21f2eb3, type: 3}
   emptyMagSound: {fileID: 8300000, guid: 5a58ba85e6180de4dbaa7dbda3efaa2d, type: 3}
@@ -696,7 +742,7 @@ MonoBehaviour:
   m_SnapToColliderVolume: 1
   m_ReinitializeDynamicAttachEverySingleGrab: 1
   m_AttachEaseInTime: 0.15
-  m_MovementType: 0
+  m_MovementType: 2
   m_VelocityDamping: 1
   m_VelocityScale: 1
   m_AngularVelocityDamping: 1
@@ -30550,6 +30596,7 @@ Transform:
   m_Children:
   - {fileID: 9026479501754027139}
   - {fileID: 9026479501831042796}
+  - {fileID: 966567010}
   m_Father: {fileID: 1701521124782751625}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
@@ -30578,7 +30625,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9026479501754027136}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.0319, z: 0}
+  m_LocalPosition: {x: 0, y: -0.05, z: -0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30595,8 +30642,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.05
-  m_Height: 0.27508265
+  m_Radius: 0.045
+  m_Height: 0.2
   m_Direction: 1
   m_Center: {x: 0, y: -0.0024586618, z: -7.1841166e-18}
 --- !u!1 &9026479501831042797
@@ -30624,7 +30671,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9026479501831042797}
   m_LocalRotation: {x: 0.43421164, y: -0, z: -0, w: 0.90081084}
-  m_LocalPosition: {x: 0, y: 0.105, z: 0.1}
+  m_LocalPosition: {x: 0, y: 0.066, z: 0.067}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30641,8 +30688,8 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.03
-  m_Height: 0.25
+  m_Radius: 0.02
+  m_Height: 0.2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &9026479501883498233
@@ -30708,7 +30755,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9026479502327691984}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: 0, y: -0.093, z: 0.07}
+  m_LocalPosition: {x: 0.015, y: -0.08, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -30779,6 +30826,11 @@ PrefabInstance:
         type: 3}
       propertyPath: ShapeModule.type
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 198321120434662062, guid: 5656e7ea1f1a75d4c895547ec2b824b3,
+        type: 3}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 199008015739197484, guid: 5656e7ea1f1a75d4c895547ec2b824b3,
         type: 3}
