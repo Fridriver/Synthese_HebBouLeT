@@ -81,7 +81,8 @@ public class Player_VR_Multijoueur : NetworkBehaviour
     private IEnumerator DeadWait()
     {
         yield return new WaitForSeconds(1f);
-        SceneLoaderManager.Instance.LoadScene("EndScene");
+        NetworkSceneTransition.Instance.ChargerScenePourTous("EndScene");
+        //SceneLoaderManager.Instance.LoadScene("EndScene");
     }
 
     private IEnumerator DiseaseProgression()

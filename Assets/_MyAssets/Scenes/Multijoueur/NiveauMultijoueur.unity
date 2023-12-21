@@ -26373,7 +26373,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2042230828}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3d40acf24737c464bb93c54f3412186c, type: 3}
+  m_Script: {fileID: 11500000, guid: cad8f67ed44b76f4fa2b25a20a2ce6b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   waveTxt: {fileID: 466226802}
@@ -29221,6 +29221,7 @@ GameObject:
   - component: {fileID: 6308831779041973964}
   - component: {fileID: 6308831779041973965}
   - component: {fileID: 6308831779041973966}
+  - component: {fileID: 6308831779041973967}
   m_Layer: 2
   m_Name: XR Origin
   m_TagString: Player
@@ -29358,6 +29359,25 @@ MonoBehaviour:
   _head: {fileID: 4637053408835162005}
   _leftHand: {fileID: 8908739400327963273}
   _rightHand: {fileID: 2596254889890712805}
+--- !u!114 &6308831779041973967
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6308831779041973962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  GlobalObjectIdHash: 110277303
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
 --- !u!4 &6421856543853161428
 Transform:
   m_ObjectHideFlags: 0
