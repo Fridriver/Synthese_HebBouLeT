@@ -24,6 +24,7 @@ public class GunInstantiatator : NetworkBehaviour
             return;
         }
         InstantiateChargerServerRpc();
+        ChargerInitialized = true;
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -41,7 +42,6 @@ public class GunInstantiatator : NetworkBehaviour
 
     private IEnumerator InstantiateCharger()
     {
-        ChargerInitialized = true;
         yield return new WaitForSeconds(0.5f);
         GunPosition = Gun.transform.Find("Socket").transform.position;
         GameObject charger = Instantiate(ChargeurPrefab, GunPosition, Gun.transform.Find("Socket").transform.rotation);

@@ -23498,7 +23498,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1828266124}
         m_TargetAssemblyTypeName: RechargementMultiplayer, Assembly-CSharp
-        m_MethodName: RechargementMagazineClientRpc
+        m_MethodName: RechargementMagazineServerRpc
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
