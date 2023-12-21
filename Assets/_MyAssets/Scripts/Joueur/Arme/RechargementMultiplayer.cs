@@ -4,13 +4,13 @@ using Unity.Netcode;
 
 public class RechargementMultiplayer : NetworkBehaviour
 {
-    [SerializeField] private GameObject ChargeurPrefab;
-    [SerializeField] private GameObject Socket;
+    public GameObject ChargeurPrefab;
+    public GameObject Socket;
 
     public void Reload()
     {
-        StartCoroutine(ActualReload(Socket.transform.position, Quaternion.identity));
-        ReloadMagServerRpc(Socket.transform.position, Quaternion.identity, NetworkManager.LocalClientId);
+        StartCoroutine(ActualReload(Socket.transform.position, Socket.transform.rotation));
+        ReloadMagServerRpc(Socket.transform.position, Socket.transform.rotation, NetworkManager.LocalClientId);
     }
 
 
@@ -23,7 +23,7 @@ public class RechargementMultiplayer : NetworkBehaviour
     [ClientRpc]
     public void ReloadMagClientRpc(Vector3 pos, Quaternion rot, ulong sender)
     {
-        if (NetworkManager.LocalClientId != sender)
+        if (NetworkManager.LocalClientId == sender)
             ActualReload(pos, rot);
     }
 
@@ -31,6 +31,6 @@ public class RechargementMultiplayer : NetworkBehaviour
     {
         yield return new WaitForSeconds(2f);
         GameObject chargeur = Instantiate(ChargeurPrefab, pos, rot);
-        chargeur.GetComponent<NetworkObject>().Spawn(true);
+        //chargeur.GetComponent<NetworkObject>().Spawn(true);
     }
 }
