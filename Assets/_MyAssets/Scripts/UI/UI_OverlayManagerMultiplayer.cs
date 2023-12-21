@@ -1,5 +1,6 @@
 using System.Collections;
 using TMPro;
+using Unity.Netcode;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -23,12 +24,24 @@ public class UI_OverlayManagerMultiplayer : MonoBehaviour
 
     private void OnWaveUpdateEvent(int obj)
     {
-        waveTxt.text = "Vague " + obj.ToString();
-        StartCoroutine(ShowWaveTxt());
+        ShowWaveTxt(obj); 
+        ShowWaveTxtClientRPC(obj);
     }
 
+    private void ShowWaveTxt(int obj)
+    {
+        waveTxt.text = "Vague " + obj.ToString();
+        StartCoroutine(IShowWaveTxt());
+    }
 
-    private IEnumerator ShowWaveTxt()
+    [ClientRpc]
+    public void ShowWaveTxtClientRPC(int obj)
+    {
+        ShowWaveTxt(obj);
+
+    }
+
+    private IEnumerator IShowWaveTxt()
     {
 
         //yield return new WaitForSeconds(1f);
