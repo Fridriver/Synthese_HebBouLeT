@@ -22,9 +22,7 @@ public class UI_JeuCanvaManager : MonoBehaviour
     private void Start()
     {
         listPanels = new GameObject[] { PanelMenuPrincipal, PanelOptions };
-
         ActivateRightPanel(0);
-
         btnOptions.onClick.AddListener(() => ActivateRightPanel(1, true));
         btnRetourOptions.onClick.AddListener(() => ActivateRightPanel(0, false));
         btnQuitter.onClick.AddListener(() => Quit());
