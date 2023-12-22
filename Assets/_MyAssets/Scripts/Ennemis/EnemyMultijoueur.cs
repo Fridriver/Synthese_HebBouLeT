@@ -77,18 +77,17 @@ public class EnemyMultijoueur : NetworkBehaviour
         }
     }
 
-    public void OnEnemyHitEvent(RaycastHit hit)
+    public void OnEnemyHitEvent(GameObject obj,RaycastHit hit)
     {
         Debug.Log("OnEnemyHitEvent");
-        targetHit = hit;
         DeathEnemyClientRPC();
-        DeathEnemy();
+        DeathEnemy(obj);
     }
 
     
-    private void DeathEnemy()
+    private void DeathEnemy(GameObject obj)
     {
-        Destroy(gameObject);
+        Destroy(obj);
     }
 
 
