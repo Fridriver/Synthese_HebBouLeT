@@ -76,16 +76,16 @@ public class EnemyMultijoueur : NetworkBehaviour
         }
     }
 
-    public void OnEnemyHitEvent(GameObject obj, RaycastHit hit)
+    public void OnEnemyHitEvent(RaycastHit hit)
     {
         Debug.Log("OnEnemyHitEvent");
-        DeathEnemy(obj, hit);
+        DeathEnemy(hit);
         DeathEnemyClientRPC();
         
     }
 
     
-    private void DeathEnemy(GameObject obj, RaycastHit hit)
+    private void DeathEnemy( RaycastHit hit)
     {
         Debug.Log("DeathEnemy");
         hitMonstreEffect.transform.position = hit.point;
@@ -93,7 +93,7 @@ public class EnemyMultijoueur : NetworkBehaviour
         hitMonstreEffect.Emit(100);
         hitMonstreEffect.transform.SetParent(null);
         navMeshAgent.enabled = false;
-        DeathEnemyClientRPC();
+        
         Destroy(this);
     }
 
