@@ -41,7 +41,7 @@ public class GunMultiplayer : NetworkBehaviour
 
     private LiquidAmmoDisplay liquidAmmoDisplay;
 
-    public event Action< RaycastHit> OnEnemyHitEvent;
+    public event Action<GameObject, RaycastHit> OnEnemyHitEvent;
 
     public event Action<GameObject, RaycastHit> OnBlobHitEvent;
 
@@ -134,7 +134,7 @@ public class GunMultiplayer : NetworkBehaviour
             if (hit.collider.tag == "Ennemi")
             {
                 Debug.Log("Ennemi touché");
-                OnEnemyHitEvent?.Invoke(hit);
+                OnEnemyHitEvent?.Invoke(hit.collider.gameObject,hit);
                 
             }
             else if (hit.collider.tag == "Blob")

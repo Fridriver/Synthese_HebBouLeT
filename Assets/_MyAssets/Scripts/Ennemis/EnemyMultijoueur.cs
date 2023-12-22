@@ -103,10 +103,6 @@ public class EnemyMultijoueur : NetworkBehaviour
     {
         Debug.Log("DeathEnemy");
 
-        hitMonstreEffect.transform.position = targetHit.point;
-        hitMonstreEffect.transform.forward = targetHit.normal;
-        hitMonstreEffect.Emit(100);
-        hitMonstreEffect.transform.SetParent(null);
         navMeshAgent.enabled = false;
         Destroy(this);
     }

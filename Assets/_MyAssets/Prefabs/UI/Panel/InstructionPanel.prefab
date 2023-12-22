@@ -633,8 +633,12 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\xC0 l'aide du pistolet vous devez \xE9liminer tous les germes ou globules
-    rouges nuisible du corps de cette personne."
+  m_text: "\r\xC0 l'aide du pistolet, \xE9liminez les germes et globules rouges nuisibles
+    dans le corps malade pour maintenir la personne en vie. Utilisez le pistolet
+    et les chargeurs \xE0 votre disposition pour vous d\xE9fendre, mais surveillez
+    et rechargez r\xE9guli\xE8rement vos munitions. Pour g\xE9rer le son et quitter
+    le jeu, cliquez sur la montre de votre main gauche avec le grip de votre main
+    droite."
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 655e1b81dd20ad148961f46a904514eb, type: 2}
   m_sharedMaterial: {fileID: 1980148416370953748, guid: 655e1b81dd20ad148961f46a904514eb,

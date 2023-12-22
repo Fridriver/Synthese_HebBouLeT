@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
         hitMonstreEffect.transform.position = hit.point;
         hitMonstreEffect.transform.forward = hit.normal;
         hitMonstreEffect.Emit(100);
-        hitMonstreEffect.transform.SetParent(null);
+        hitMonstreEffect.transform.SetParent(GameObject.Find("Particules").transform);
         Destroy(obj);
     }
 
