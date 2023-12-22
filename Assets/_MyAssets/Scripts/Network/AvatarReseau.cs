@@ -16,6 +16,7 @@ public class AvatarReseau : NetworkBehaviour
 
     private void Update()
     {
+        try {
         if (IsOwner)
         {
             _rootAvatar.position = PositionsVRRig.Instance.Root.position;
@@ -30,5 +31,7 @@ public class AvatarReseau : NetworkBehaviour
             _rightHandAvatar.position = PositionsVRRig.Instance.RightHand.position;
             _rightHandAvatar.rotation = PositionsVRRig.Instance.RightHand.rotation;
         }
+        }
+        catch(MissingReferenceException) { }
     }
 }
