@@ -66,7 +66,7 @@ public class Player_VR : MonoBehaviour
             LightHealthLow.gameObject.SetActive(false);
         }
     }
-
+    [ContextMenu("PlayerDead")]
     public void PlayerDead()
     {
         
