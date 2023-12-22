@@ -14,6 +14,7 @@ public class EnemyMultijoueur : NetworkBehaviour
     private AvatarReseau[] players;
     [SerializeField] private float degatMonstres = 20f;
     private Player_VR_Multijoueur[] player_VR;
+    private RaycastHit targetHit;
 
     private void Start()
     {
@@ -79,21 +80,15 @@ public class EnemyMultijoueur : NetworkBehaviour
     public void OnEnemyHitEvent(RaycastHit hit)
     {
         Debug.Log("OnEnemyHitEvent");
+        targetHit = hit;
         DeathEnemyClientRPC();
-        DeathEnemy(hit);
+        DeathEnemy();
     }
 
     
-    private void DeathEnemy( RaycastHit hit)
+    private void DeathEnemy()
     {
-        Debug.Log("DeathEnemy");
-        hitMonstreEffect.transform.position = hit.point;
-        hitMonstreEffect.transform.forward = hit.normal;
-        hitMonstreEffect.Emit(100);
-        hitMonstreEffect.transform.SetParent(null);
-        navMeshAgent.enabled = false;
-        
-        Destroy(this);
+        Destroy(gameObject);
     }
 
 
@@ -106,6 +101,13 @@ public class EnemyMultijoueur : NetworkBehaviour
     [ClientRpc]
     public void DeathEnemyClientRPC()
     {
+        Debug.Log("DeathEnemy");
+
+        hitMonstreEffect.transform.position = targetHit.point;
+        hitMonstreEffect.transform.forward = targetHit.normal;
+        hitMonstreEffect.Emit(100);
+        hitMonstreEffect.transform.SetParent(null);
+        navMeshAgent.enabled = false;
         Destroy(this);
     }
 }
