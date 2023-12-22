@@ -79,9 +79,8 @@ public class EnemyMultijoueur : NetworkBehaviour
     public void OnEnemyHitEvent(RaycastHit hit)
     {
         Debug.Log("OnEnemyHitEvent");
-        DeathEnemy(hit);
         DeathEnemyClientRPC();
-        
+        DeathEnemy(hit);
     }
 
     
