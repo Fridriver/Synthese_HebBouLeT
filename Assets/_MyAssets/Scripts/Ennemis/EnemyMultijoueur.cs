@@ -7,7 +7,7 @@ public class EnemyMultijoueur : NetworkBehaviour
     [Header("Effet de particule")]
     [SerializeField] private ParticleSystem hitMonstreEffect;
 
-    private Gun Gun;
+    private GunMultiplayer Gun;
 
     private NavMeshAgent navMeshAgent;
     private Transform target;
@@ -17,7 +17,7 @@ public class EnemyMultijoueur : NetworkBehaviour
 
     private void Start()
     {
-        Gun = FindObjectOfType<Gun>();
+        Gun = FindObjectOfType<GunMultiplayer>();
         Gun.OnEnemyHitEvent += OnEnemyHitEvent;
         navMeshAgent = GetComponent<NavMeshAgent>();
 
@@ -69,7 +69,7 @@ public class EnemyMultijoueur : NetworkBehaviour
 
             if (Vector3.Distance(player.transform.position, transform.position) < 1.5f)
             {
-                Debug.Log("Player is in Range");
+               // Debug.Log("Player is in Range");
                 NetworkSceneTransition.Instance.ChargerScenePourTous("EndSceneMultijoueur");
             }
 
@@ -78,17 +78,14 @@ public class EnemyMultijoueur : NetworkBehaviour
 
     private void OnEnemyHitEvent(GameObject obj, RaycastHit hit)
     {
-        if (!NetworkManager.Singleton.IsServer)
-        {
-            return;
-        }
-        Debug.Log("Enemy Hit");
+        Debug.Log("OnEnemyHitEvent");
         DeathEnemy(obj, hit);
         Destroy(obj);
     }
     
     private void DeathEnemy(GameObject obj, RaycastHit hit)
     {
+        Debug.Log("DeathEnemy");
         hitMonstreEffect.transform.position = hit.point;
         hitMonstreEffect.transform.forward = hit.normal;
         hitMonstreEffect.Emit(100);

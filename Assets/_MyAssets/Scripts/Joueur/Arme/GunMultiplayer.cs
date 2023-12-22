@@ -164,7 +164,7 @@ public class GunMultiplayer : NetworkBehaviour
         if (NetworkManager.LocalClientId != sender)
         {
             Shoot();
-            Debug.Log("ShootingClientRPC");
+            
         }
     }
 
@@ -172,7 +172,7 @@ public class GunMultiplayer : NetworkBehaviour
     public void ShootingServerRPC(ulong sender)
     {
         ShootingClientRPC(sender);
-        Debug.Log("ShootingServerRPC");
+        
     }
 
     public void Loaded(SelectEnterEventArgs args)
