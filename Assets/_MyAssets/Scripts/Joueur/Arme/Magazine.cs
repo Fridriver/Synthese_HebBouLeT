@@ -18,6 +18,10 @@ public class Magazine : MonoBehaviour
     private void Start()
     {
         nbBallesChargeur = maxBallesChargeur;
+        
+        Collider collider = GetComponent<Collider>(); 
+        Collider playerCollider = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Collider>();
+        Physics.IgnoreCollision(collider, playerCollider);
     }
 
 

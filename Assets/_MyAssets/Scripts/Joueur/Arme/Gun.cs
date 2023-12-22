@@ -45,6 +45,15 @@ public class Gun : MonoBehaviour
 
     private void Start()
     {
+        Collider[] listCollider = this.GetComponentsInChildren<Collider>();
+        Collider playerCollider = GameObject.FindGameObjectWithTag("Player").GetComponentInChildren<Collider>();
+
+        foreach (Collider collider in listCollider)
+        {
+            Physics.IgnoreCollision(collider, playerCollider );
+        }
+       
+
         player = FindObjectOfType<Player_VR>();
         audioSource = GetComponent<AudioSource>();
         socketInteractor.selectEntered.AddListener(AddMagazine);
